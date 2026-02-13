@@ -1,25 +1,23 @@
-import { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site";
-import { locales } from "@/i18n/config";
+import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
+
+function getBaseUrl() {
+    const h = headers();
+    const host = h.get("x-forwarded-host") ?? h.get("host");
+    const proto = h.get("x-forwarded-proto") ?? "https";
+    return `${proto}://${host}`;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseRoutes = [
-        "",
-        "/projects",
-    ];
+    const baseUrl = getBaseUrl();
+    const now = new Date();
 
-    const sitemapEntries: MetadataRoute.Sitemap = [];
+    const paths = ["/en", "/en/projects", "/ar", "/ar/projects"];
 
-    for (const locale of locales) {
-        for (const route of baseRoutes) {
-            sitemapEntries.push({
-                url: `${SITE_URL}/${locale}${route}`,
-                lastModified: new Date(),
-                changeFrequency: "monthly",
-                priority: route === "" ? 1 : 0.8,
-            });
-        }
-    }
-
-    return sitemapEntries;
+    return paths.map((p) => ({
+        url: `${baseUrl}${p}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: p === "/en" || p === "/ar" ? 1 : 0.8,
+    }));
 }
