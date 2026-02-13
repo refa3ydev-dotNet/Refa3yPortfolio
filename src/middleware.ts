@@ -2,37 +2,37 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { locales, defaultLocale } from "@/i18n/config";
 
-export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl;
+export function middleware(req: NextRequest) {
+    const { pathname } = req.nextUrl;
 
     // Check if the pathname already has a locale
     const pathnameHasLocale = locales.some(
         (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
-    if (pathnameHasLocale) return;
+    if (pathnameHasLocale) {
+        return NextResponse.next();
+    }
 
-    // Skip internal files
+    // allow static files & verification files
     if (
         pathname.startsWith("/_next") ||
         pathname.startsWith("/api") ||
-        pathname.includes(".") // images, icons, robots.txt, sitemap.xml
+        pathname === "/robots.txt" ||
+        pathname === "/sitemap.xml" ||
+        (pathname.startsWith("/google") && pathname.endsWith(".html")) ||
+        pathname.match(/\.(.*)$/) // any file with extension (.png .jpg .svg .html ...)
     ) {
-        return;
+        return NextResponse.next();
     }
 
-    // Redirect to default locale
+    // Redirect to default locale logic
     const locale = defaultLocale;
-    request.nextUrl.pathname = `/${locale}${pathname}`;
-    // e.g. incoming request is /projects
-    // The new URL is now /en/projects
-    return NextResponse.redirect(request.nextUrl);
+    const url = req.nextUrl.clone();
+    url.pathname = `/${locale}${pathname}`;
+    return NextResponse.redirect(url);
 }
 
 export const config = {
-    matcher: [
-        // Skip all internal paths (_next)
-        '/((?!_next).*)',
-        // Optional: match specific paths
-    ],
+    matcher: ["/((?!_next).*)"],
 };
