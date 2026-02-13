@@ -54,7 +54,7 @@ export default function LoadoutSection() {
                     {skills.columns.map((col, colIdx) => (
                         <motion.div
                             key={col.title}
-                            className="manga-frame p-6"
+                            className="manga-frame p-6 relative overflow-hidden dark:bg-[#131724] dark:border-[rgba(242,239,232,0.22)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.45)] dark:ring-1 dark:ring-inset dark:ring-[rgba(242,239,232,0.10)]"
                             variants={fadeUp}
                             whileHover={{
                                 y: -4,
@@ -62,19 +62,19 @@ export default function LoadoutSection() {
                                 transition: { duration: 0.2 },
                             }}
                         >
-                            <h3 className="text-sm font-black tracking-wider uppercase mb-5 pb-2 border-b border-ink">
+                            <h3 className="text-sm font-black tracking-wider uppercase mb-5 pb-2 border-b border-ink dark:border-[rgba(242,239,232,0.16)] dark:text-[#F2EFE8]">
                                 {col.title}
                             </h3>
                             <ul className="space-y-3">
                                 {col.items.map((item, itemIdx) => (
                                     <li key={item}>
                                         <div className="flex items-center justify-between mb-1">
-                                            <span className="text-sm font-semibold">{item}</span>
+                                            <span className="text-sm font-semibold dark:text-[rgba(242,239,232,0.82)]">{item}</span>
                                         </div>
                                         {/* Decorative red progress line — animated draw */}
-                                        <div className="h-1 bg-paper-dark border border-ink/20 overflow-hidden">
+                                        <div className="h-1 bg-paper-dark border border-ink/20 dark:bg-[rgba(242,239,232,0.20)] dark:border-[rgba(242,239,232,0.28)] overflow-hidden relative">
                                             <motion.div
-                                                className="h-full bg-blood"
+                                                className="h-full bg-blood relative"
                                                 initial={{ scaleX: 0 }}
                                                 whileInView={{ scaleX: 1 }}
                                                 viewport={{ once: true }}
@@ -87,7 +87,10 @@ export default function LoadoutSection() {
                                                     transformOrigin: "left",
                                                     width: `${progressWidths[colIdx]?.[itemIdx] ?? 75}%`,
                                                 }}
-                                            />
+                                            >
+                                                {/* Premium highlight line on top of fill */}
+                                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-[rgba(242,239,232,0.12)]" />
+                                            </motion.div>
                                         </div>
                                     </li>
                                 ))}

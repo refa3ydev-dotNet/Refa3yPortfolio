@@ -1,9 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
+import React from "react";
 import { profile } from "@/data/profile";
 import CharacterCard from "./CharacterCard";
 import SectionReveal from "./SectionReveal";
+import HeroInteractiveBackground from "./HeroInteractiveBackground";
 import {
     staggerContainer,
     fadeUp,
@@ -14,9 +16,39 @@ import {
 export default function Hero() {
     const { hero } = profile;
 
-    const scrollTo = (href: string) => {
-        const el = document.querySelector(href);
-        el?.scrollIntoView({ behavior: "smooth" });
+    // Mouse position state (Normalized -1 to 1)
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        // Calculate normalized position [-1, 1]
+        const x = ((e.clientX - left) / width) * 2 - 1;
+        const y = ((e.clientY - top) / height) * 2 - 1;
+
+        mouseX.set(x);
+        mouseY.set(y);
+    };
+
+    const handlePointerLeave = () => {
+        // Smoothly animate back to center (0,0) on leave
+        animate(mouseX, 0, { duration: 0.5 });
+        animate(mouseY, 0, { duration: 0.5 });
+    };
+
+    // Button loading state
+    const [isLoadingProjects, setIsLoadingProjects] = React.useState(false);
+
+    const handleProjectsClick = () => {
+        setIsLoadingProjects(true);
+        // Simulate delay or let next.js router handle it, but for effect we show state
+        // In a real app the router.push would happen. 
+        // Since scrollTo uses document.querySelector it's instant, but we can fake a "load"
+        setTimeout(() => {
+            const el = document.querySelector("#projects");
+            el?.scrollIntoView({ behavior: "smooth" });
+            setIsLoadingProjects(false);
+        }, 800);
     };
 
     return (
@@ -24,15 +56,13 @@ export default function Hero() {
             id="home"
             className="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden"
         >
-            {/* Horizontal dashed background lines */}
-            <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-                {Array.from({ length: 12 }).map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute left-0 right-0 border-t border-dashed border-ink/10"
-                        style={{ top: `${8 + i * 7}%` }}
-                    />
-                ))}
+            {/* Interactive Anime Container - Tracks mouse */}
+            <div
+                className="absolute inset-0 z-0"
+                onPointerMove={handlePointerMove}
+                onPointerLeave={handlePointerLeave}
+            >
+                <HeroInteractiveBackground mouseX={mouseX} mouseY={mouseY} />
             </div>
 
             <div className="mx-auto max-w-6xl px-6 w-full relative">
@@ -101,12 +131,24 @@ export default function Hero() {
                             variants={fadeUp}
                         >
                             <motion.button
-                                onClick={() => scrollTo("#projects")}
-                                className="bg-blood text-white text-xs font-bold tracking-wider uppercase px-6 py-3 border-2 border-blood hover:bg-blood/90 transition-colors"
+                                onClick={handleProjectsClick}
+                                disabled={isLoadingProjects}
+                                className="bg-blood text-white text-xs font-bold tracking-wider uppercase px-6 py-3 border-2 border-blood hover:bg-blood/90 transition-colors disabled:opacity-70 disabled:cursor-wait relative overflow-hidden"
                                 whileHover={{ scale: 1.04, y: -2 }}
                                 whileTap={{ scale: 0.97 }}
                             >
-                                View Projects
+                                {isLoadingProjects ? (
+                                    <span className="flex items-center gap-2">
+                                        LOADING
+                                        <motion.span
+                                            className="block w-1.5 h-1.5 bg-white rounded-full"
+                                            animate={{ opacity: [0, 1, 0] }}
+                                            transition={{ duration: 1, repeat: Infinity }}
+                                        />
+                                    </span>
+                                ) : (
+                                    "View Projects"
+                                )}
                             </motion.button>
                             <motion.a
                                 href={hero.cvLink}

@@ -9,7 +9,6 @@ import {
     staggerContainer,
     fadeUp,
     scaleUp,
-    clipRevealLeft,
 } from "@/components/AnimeAnimations";
 
 export default function ProjectsPage() {

@@ -1,38 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import InitialLoader from "@/components/InitialLoader";
 import ThemeProvider from "@/components/ThemeProvider";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Refay — Junior .NET Developer Portfolio",
-  description:
-    "Portfolio of Omar Ayman (Refay) — Junior Full-Stack .NET Developer specializing in ASP.NET MVC/Core, React, SQL Server, and 3-Tier Architecture.",
-  keywords: [
-    "Omar Ayman",
-    "Refay",
-    ".NET Developer",
-    "ASP.NET",
-    "React",
-    "SQL Server",
-    "Portfolio",
-    "Junior Developer",
-    "Full-Stack",
-  ],
-  authors: [{ name: "Omar Ayman" }],
-  openGraph: {
-    title: "Refay — Junior .NET Developer Portfolio",
-    description:
-      "Junior .NET Developer building scalable backends and clean frontends.",
-    type: "website",
-  },
+  title: "Omar Ayman | Full-Stack .NET Developer",
+  description: "Portfolio of Omar Ayman Allam, a Junior Full-Stack .NET Developer.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

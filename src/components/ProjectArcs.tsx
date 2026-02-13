@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import SectionReveal from "./SectionReveal";
@@ -70,6 +71,7 @@ export default function ProjectArcs() {
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     sizes="(max-width: 768px) 100vw, 50vw"
+                                    unoptimized
                                 />
                                 {/* Episode badge */}
                                 <motion.span
@@ -167,14 +169,14 @@ export default function ProjectArcs() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 }}
                 >
-                    <a href="/projects">
+                    <Link href="/projects" prefetch={false}>
                         <motion.button
                             className="text-sm font-bold tracking-wider uppercase text-ink hover:text-blood transition-colors"
                             whileHover={{ x: 8 }}
                         >
                             READ MORE CHAPTERS →
                         </motion.button>
-                    </a>
+                    </Link>
                 </motion.p>
 
             </div>
