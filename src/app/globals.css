@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   MANGA PORTFOLIO — GLOBAL STYLES
+   ======================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+/* ── Design Tokens ────────────────────────
+   All colors flow from these six variables.
+   Light values are defaults; .dark overrides.
+   ──────────────────────────────────────── */
+:root {
+  --bg:      #FAF7F0;
+  --surface: #EDE9E0;
+  --text:    #111111;
+  --muted:   #3a3a3a;
+  --border:  #111111;
+  --accent:  #B3261E;
+
+  /* Shadows — change between modes */
+  --shadow-manga:       4px 4px 0 0 #111111;
+  --shadow-manga-sm:    2px 2px 0 0 #111111;
+  --shadow-manga-hover: 6px 6px 0 0 #111111;
+}
+
+.dark {
+  --bg:      #0B0D10;
+  --surface: #11131A;
+  --text:    #F2EFE8;
+  --muted:   rgba(242,239,232,0.72);
+  --border:  rgba(242,239,232,0.18);
+  --accent:  #B3261E;
+
+  --shadow-manga:       4px 4px 0 0 rgba(242,239,232,0.10);
+  --shadow-manga-sm:    2px 2px 0 0 rgba(242,239,232,0.10);
+  --shadow-manga-hover: 6px 6px 0 0 rgba(242,239,232,0.14);
+}
+
+/* ── Base ────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Halftone dot pattern — light mode */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #111111 0.5px, transparent 0.5px);
+  background-size: 18px 18px;
+  opacity: 0.035;
+}
+
+/* Dark mode — faint noise texture (no overlay) */
+.dark body::before {
+  background-image: radial-gradient(circle, rgba(242,239,232,0.3) 0.4px, transparent 0.4px);
+  background-size: 16px 16px;
+  opacity: 0.04;
+}
+
+/* Ensure content above texture */
+#__next, main, header, footer, section {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Focus ───────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Selection ───────────────────────── */
+::selection {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* ── Scrollbar ───────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
+
+/* ── Utility Classes ─────────────────── */
+@layer components {
+  /* Manga frame border — auto-adapts via CSS vars */
+  .manga-frame {
+    border: 2px solid var(--border);
+    background: var(--bg);
+    box-shadow: var(--shadow-manga);
+    transition: box-shadow 0.2s ease, transform 0.2s ease,
+      background-color 0.25s ease, border-color 0.25s ease;
+  }
+  .manga-frame:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-manga-hover);
+  }
+
+  .manga-frame-static {
+    border: 2px solid var(--border);
+    background: var(--bg);
+    box-shadow: var(--shadow-manga);
+  }
+
+  /* Section divider */
+  .section-divider {
+    width: 100%;
+    height: 2px;
+    background: var(--border);
+    transition: background-color 0.25s ease;
+  }
+
+  /* Blood red decorative line */
+  .blood-line {
+    height: 3px;
+    background: var(--accent);
+    border-radius: 0;
+  }
+
+  /* Chip / tag */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: var(--bg);
+    transition: background 0.15s, color 0.15s, border-color 0.25s;
+  }
+
+  .chip-blood {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* Primary CTA button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-manga-sm);
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: var(--shadow-manga);
+  }
+  .btn-primary:active {
+    transform: translate(1px, 1px);
+    box-shadow: var(--shadow-manga-sm);
+  }
+
+  /* Secondary outline button */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-manga-sm);
+    transition: transform 0.15s, box-shadow 0.15s,
+      background-color 0.25s, color 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .btn-secondary:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: var(--shadow-manga);
+  }
+  .btn-secondary:active {
+    transform: translate(1px, 1px);
+    box-shadow: var(--shadow-manga-sm);
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Section heading */
+  .section-heading {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  @media (min-width: 768px) {
+    .section-heading {
+      font-size: 3rem;
+    }
+  }
+}
