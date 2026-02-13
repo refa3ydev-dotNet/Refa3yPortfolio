@@ -1,15 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 export default function MangaLoader() {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
     // Prevent hydration mismatch by rendering null initially if needed, 
     // but for a loader, we usually want it immediately from server or client.
     // However, to respect prefers-reduced-motion, we check media query via matchMedia in JS or CSS.

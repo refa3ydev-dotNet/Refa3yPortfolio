@@ -32,8 +32,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-paper text-ink antialiased">
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className={`${inter.className} bg-paper text-ink antialiased`}>
+        <ThemeProvider>
+          <InitialLoader />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
