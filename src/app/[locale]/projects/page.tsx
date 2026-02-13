@@ -1,8 +1,6 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import FooterCTA from "@/components/FooterCTA";
-import { profile } from "@/data/profile";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
@@ -10,11 +8,18 @@ import {
     fadeUp,
     scaleUp,
 } from "@/components/AnimeAnimations";
+import { Locale } from "@/i18n/config";
+import { messages } from "@/i18n/messages";
 
-export default function ProjectsPage() {
+interface ProjectsPageProps {
+    params: { locale: Locale };
+}
+
+export default function ProjectsPage({ params: { locale } }: ProjectsPageProps) {
+    const dict = messages[locale] || messages.en;
+
     return (
         <>
-            <Navbar />
             <main className="min-h-screen bg-paper pt-24 pb-20">
                 <div className="mx-auto max-w-6xl px-6">
                     <motion.div
@@ -27,18 +32,18 @@ export default function ProjectsPage() {
                             className="text-4xl sm:text-5xl md:text-6xl font-black uppercase text-ink"
                             variants={scaleUp}
                         >
-                            All Projects
+                            {dict.projectsPage.heading}
                         </motion.h1>
                         <motion.p
                             className="text-ink-light max-w-2xl mx-auto"
                             variants={fadeUp}
                         >
-                            A collection of my work, assignments, and side projects.
+                            {dict.projectsPage.subtext}
                         </motion.p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {profile.projects.map((project, index) => (
+                        {dict.projects.map((project, index) => (
                             <motion.article
                                 key={project.episode + index}
                                 className="manga-frame overflow-hidden group flex flex-col h-full bg-paper-light border border-ink/10 hover:border-ink transition-colors duration-300"
@@ -104,7 +109,7 @@ export default function ProjectsPage() {
                     </div>
                 </div>
             </main>
-            <FooterCTA />
+            <FooterCTA dict={dict} />
         </>
     );
 }

@@ -3,10 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import { profile } from "@/data/profile";
 import { useTheme } from "./ThemeProvider";
+import { Dictionary } from "@/i18n/messages";
+import { Locale } from "@/i18n/config";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function Navbar() {
+interface NavbarProps {
+    dict: Dictionary;
+    locale: Locale;
+}
+
+export default function Navbar({ dict, locale }: NavbarProps) {
     const [active, setActive] = useState("home");
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -22,12 +29,13 @@ export default function Navbar() {
 
     /* Track active section via IntersectionObserver */
     useEffect(() => {
-        if (pathname !== "/") {
+        // Only run observer if we are on the home page of the current locale
+        if (pathname !== `/${locale}`) {
             setActive("");
             return;
         }
 
-        const ids = profile.nav.map((n) => n.id);
+        const ids = dict.nav.map((n) => n.id);
         const observers: IntersectionObserver[] = [];
 
         ids.forEach((id) => {
@@ -44,14 +52,17 @@ export default function Navbar() {
         });
 
         return () => observers.forEach((o) => o.disconnect());
-    }, [pathname]);
+    }, [pathname, dict.nav, locale]);
 
     const handleClick = (href: string) => {
         setMobileOpen(false);
-        if (pathname !== "/") {
-            router.push(`/${href}`);
+        // If we are not on the home page of the current locale, navigate there
+        if (pathname !== `/${locale}`) {
+            // href is mostly "#home", "#skills" etc.
+            router.push(`/${locale}${href}`);
             return;
         }
+        // Smooth scroll if on home page
         const el = document.querySelector(href);
         el?.scrollIntoView({ behavior: "smooth" });
     };
@@ -66,6 +77,9 @@ export default function Navbar() {
                 ? "bg-paper/95 backdrop-blur-sm border-b-2 border-ink"
                 : "bg-transparent"
                 }`}
+            dir="ltr" // Force LTR for navbar layout consistency if desired, or let it flip. 
+        // The prompt said "ar => rtl". If I let it flip, flex-row becomes flipped.
+        // Usually navbar stays LTR or flips completely. Let's respect global DIR.
         >
             <nav
                 className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
@@ -118,13 +132,13 @@ export default function Navbar() {
                         </text>
                     </svg>
                     <span className="text-xl font-black tracking-wide">
-                        {profile.name}
+                        {dict.name}
                     </span>
                 </button>
 
                 {/* Desktop links */}
                 <ul className="hidden md:flex items-center gap-6">
-                    {profile.nav.map((item) => (
+                    {dict.nav.map((item) => (
                         <li key={item.id}>
                             <button
                                 onClick={() => handleClick(item.href)}
@@ -199,10 +213,15 @@ export default function Navbar() {
                             )}
                         </button>
                     </li>
+                    {/* Language Switcher */}
+                    <li>
+                        <LanguageSwitcher locale={locale} />
+                    </li>
                 </ul>
 
-                {/* Mobile: theme toggle + hamburger */}
+                {/* Mobile: theme toggle + lang + hamburger */}
                 <div className="md:hidden flex items-center gap-2">
+                    <LanguageSwitcher locale={locale} />
                     <button
                         onClick={toggleTheme}
                         className="p-2 text-ink hover:text-blood transition-colors"
@@ -257,7 +276,7 @@ export default function Navbar() {
                         className="md:hidden bg-paper border-b-2 border-ink px-6 pb-6"
                     >
                         <ul className="flex flex-col gap-4">
-                            {profile.nav.map((item) => (
+                            {dict.nav.map((item) => (
                                 <li key={item.id}>
                                     <button
                                         onClick={() => handleClick(item.href)}

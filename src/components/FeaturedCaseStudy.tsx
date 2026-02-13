@@ -1,21 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { staggerContainer, fadeUp } from "./AnimeAnimations";
+
+interface FeaturedCaseStudyProps {
+    dict: Dictionary;
+}
 
 /**
  * Featured Case Study — 4-column block with anime reveal animations.
  */
-export default function FeaturedCaseStudy() {
-    const { caseStudy } = profile;
+export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
+    const { caseStudy } = dict;
 
     const columns = [
-        { label: "PROBLEM", content: caseStudy.problem },
-        { label: "APPROACH", content: caseStudy.approach },
-        { label: "ARCHITECTURE", content: caseStudy.architecture },
-        { label: "RESULT", content: caseStudy.result },
+        { label: caseStudy.problemLabel, content: caseStudy.problem, key: "PROBLEM" },
+        { label: caseStudy.approachLabel, content: caseStudy.approach, key: "APPROACH" },
+        { label: caseStudy.architectureLabel, content: caseStudy.architecture, key: "ARCHITECTURE" },
+        { label: caseStudy.resultLabel, content: caseStudy.result, key: "RESULT" },
     ];
 
     return (
@@ -28,7 +32,7 @@ export default function FeaturedCaseStudy() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4 }}
                 >
-                    Featured Case Study
+                    {caseStudy.heading}
                 </motion.h3>
 
                 <motion.div
@@ -59,7 +63,7 @@ export default function FeaturedCaseStudy() {
                                 {col.label}
                             </motion.h4>
 
-                            {col.label === "ARCHITECTURE" ? (
+                            {col.key === "ARCHITECTURE" ? (
                                 <div className="space-y-2">
                                     <p className="text-xs text-ink-light leading-relaxed">
                                         {col.content}
@@ -76,15 +80,15 @@ export default function FeaturedCaseStudy() {
                                         transition={{ delay: 0.6, duration: 0.5 }}
                                     >
                                         <rect x="20" y="5" width="120" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                                        <text x="80" y="20" textAnchor="middle" fontSize="8" fontWeight="700" fill="currentColor">Presentation</text>
+                                        <text x="80" y="20" textAnchor="middle" fontSize="8" fontWeight="700" fill="currentColor">{caseStudy.diagram.presentation}</text>
                                         <line x1="80" y1="27" x2="80" y2="38" stroke="currentColor" strokeWidth="1" />
                                         <polygon points="76,36 84,36 80,42" fill="currentColor" />
                                         <rect x="20" y="42" width="120" height="22" fill="none" stroke="#B3261E" strokeWidth="1.5" />
-                                        <text x="80" y="57" textAnchor="middle" fontSize="8" fontWeight="700" fill="#B3261E">Business Logic</text>
+                                        <text x="80" y="57" textAnchor="middle" fontSize="8" fontWeight="700" fill="#B3261E">{caseStudy.diagram.businessLogic}</text>
                                         <line x1="80" y1="64" x2="80" y2="75" stroke="currentColor" strokeWidth="1" />
                                         <polygon points="76,73 84,73 80,79" fill="currentColor" />
                                         <rect x="20" y="79" width="120" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                                        <text x="80" y="94" textAnchor="middle" fontSize="8" fontWeight="700" fill="currentColor">Data Access</text>
+                                        <text x="80" y="94" textAnchor="middle" fontSize="8" fontWeight="700" fill="currentColor">{caseStudy.diagram.dataAccess}</text>
                                     </motion.svg>
                                 </div>
                             ) : (

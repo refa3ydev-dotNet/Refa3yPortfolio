@@ -2,10 +2,10 @@
 
 import { motion, useMotionValue, animate } from "framer-motion";
 import React from "react";
-import { profile } from "@/data/profile";
 import CharacterCard from "./CharacterCard";
 import SectionReveal from "./SectionReveal";
 import HeroInteractiveBackground from "./HeroInteractiveBackground";
+import { Dictionary } from "@/i18n/messages";
 import {
     staggerContainer,
     fadeUp,
@@ -13,8 +13,12 @@ import {
     stampIn,
 } from "./AnimeAnimations";
 
-export default function Hero() {
-    const { hero } = profile;
+interface HeroProps {
+    dict: Dictionary;
+}
+
+export default function Hero({ dict }: HeroProps) {
+    const { hero } = dict;
 
     // Mouse position state (Normalized -1 to 1)
     const mouseX = useMotionValue(0);
@@ -109,11 +113,7 @@ export default function Hero() {
                             variants={fadeUp}
                         >
                             <p className="text-sm sm:text-base leading-relaxed text-ink-light">
-                                Junior .NET Developer building scalable{" "}
-                                <strong className="text-ink font-bold">ASP.NET MVC/Core</strong>{" "}
-                                backends and clean{" "}
-                                <strong className="text-ink font-bold">React</strong> frontends.
-                                3-Tier Architecture • SQL Server • Maintainable systems.
+                                {hero.subtitle}
                             </p>
                         </motion.div>
 
@@ -171,7 +171,7 @@ export default function Hero() {
                         initial="hidden"
                         animate="visible"
                     >
-                        <CharacterCard />
+                        <CharacterCard dict={dict} />
 
                         {/* Vertical Japanese katakana — decorative */}
                         <motion.div

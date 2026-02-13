@@ -1,14 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { staggerContainer, fadeUp } from "./AnimeAnimations";
+
+interface EducationProps {
+    dict: Dictionary;
+}
 
 /**
  * Education & Training section with anime-style animations.
  */
-export default function Education() {
+export default function Education({ dict }: EducationProps) {
     return (
         <SectionReveal className="py-16">
             <div className="mx-auto max-w-6xl px-6">
@@ -20,7 +24,7 @@ export default function Education() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
                 >
-                    Education & Training
+                    {dict.sectionHeadings.education}
                 </motion.h2>
 
                 <motion.div
@@ -31,7 +35,7 @@ export default function Education() {
                     viewport={{ once: true, amount: 0.2 }}
                 >
                     {/* Degree cards */}
-                    {profile.education.map((edu, i) => (
+                    {dict.education.map((edu, i) => (
                         <motion.div
                             key={i}
                             className="manga-frame p-5"
@@ -76,13 +80,13 @@ export default function Education() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.4 }}
                         >
-                            ITI Internship
+                            {dict.sectionHeadings.internshipBadge}
                         </motion.span>
                         <h3 className="text-base font-black uppercase mt-1 dark:text-dark-text">
-                            Certifications
+                            {dict.sectionHeadings.certifications}
                         </h3>
                         <div className="flex flex-wrap gap-3 mt-3">
-                            {profile.certifications.map((cert, i) => (
+                            {dict.certifications.map((cert, i) => (
                                 <motion.div
                                     key={cert.name}
                                     className="chip"

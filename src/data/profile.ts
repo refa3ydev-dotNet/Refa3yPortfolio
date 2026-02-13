@@ -85,6 +85,16 @@ export const profile = {
 
     // Featured Case Study
     caseStudy: {
+        heading: "Featured Case Study",
+        problemLabel: "PROBLEM",
+        approachLabel: "APPROACH",
+        architectureLabel: "ARCHITECTURE",
+        resultLabel: "RESULT",
+        diagram: {
+            presentation: "Presentation",
+            businessLogic: "Business Logic",
+            dataAccess: "Data Access",
+        },
         problem:
             "Needed a scalable, testable backend that separates concerns and avoids tight coupling across layers.",
         approach:
@@ -148,6 +158,33 @@ export const profile = {
         linkedin: "https://www.linkedin.com/in/omar-refaey-b20081253/", // Replace
         github: "https://github.com/refa3ydev-dotNet", // Replace
     },
-} as const;
 
-export type Profile = typeof profile;
+    // UI Strings (for localization)
+    sectionHeadings: {
+        projects: "PROJECT ARCS",
+        experience: "MENTOR ARC",
+        education: "Education & Training",
+        certifications: "Certifications",
+        internshipBadge: "ITI Internship",
+        techLoadout: "TECH LOADOUT",
+    },
+    projectsPage: {
+        heading: "All Projects",
+        subtext: "A collection of my work, assignments, and side projects.",
+    },
+    buttonLabels: {
+        viewProjects: "View Projects",
+        downloadCv: "Download CV",
+        readMore: "READ MORE CHAPTERS →",
+        caseStudy: "Case Study",
+        github: "GitHub",
+        emailMe: "✉ Email Me",
+        linkedin: "LinkedIn",
+        repo: "◆ GitHub",
+    },
+    footer: {
+        copyright: "Portfolio © 2026. All rights reserved.",
+    }
+};
+
+export type ProfileData = typeof profile;

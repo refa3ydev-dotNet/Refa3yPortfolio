@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
 import { clipRevealUp, fadeUp, fastStagger } from "./AnimeAnimations";
+import { Dictionary } from "@/i18n/messages";
 
 interface CharacterCardProps {
+    dict: Dictionary;
     /** Override the default avatar image path */
     image?: string;
     /** "photo" applies manga filters to a real photo; "illustration" renders as-is */
@@ -19,10 +20,11 @@ interface CharacterCardProps {
  * No green, no neon, no cyberpunk cues.
  */
 export default function CharacterCard({
+    dict,
     image,
     portraitMode = "photo",
 }: CharacterCardProps) {
-    const src = image ?? profile.avatarSrc;
+    const src = image ?? dict.avatarSrc;
     const isPhoto = portraitMode === "photo";
 
     return (
@@ -47,7 +49,7 @@ export default function CharacterCard({
             >
                 <Image
                     src={src}
-                    alt={`${profile.fullName} — avatar`}
+                    alt={`${dict.fullName} — avatar`}
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 340px"
@@ -93,7 +95,7 @@ export default function CharacterCard({
                     <p className="text-[0.6rem] text-white/60 tracking-wide">
                         Expected Graduation:{" "}
                         <span className="text-white/90 font-semibold">
-                            {profile.expectedGraduation}
+                            {dict.expectedGraduation}
                         </span>
                     </p>
                 </motion.div>
@@ -112,9 +114,9 @@ export default function CharacterCard({
                     <div>
                         <div className="flex justify-between text-[0.65rem] font-bold uppercase tracking-widest mb-1">
                             <span>
-                                {profile.characterStats.int}{" "}
+                                {dict.characterStats.int}{" "}
                                 <span className="font-normal text-ink-light">
-                                    ({profile.characterStats.intLabel})
+                                    ({dict.characterStats.intLabel})
                                 </span>
                             </span>
                         </div>
@@ -137,9 +139,9 @@ export default function CharacterCard({
                     <div>
                         <div className="flex justify-between text-[0.65rem] font-bold uppercase tracking-widest mb-1">
                             <span>
-                                {profile.characterStats.cre}{" "}
+                                {dict.characterStats.cre}{" "}
                                 <span className="font-normal text-ink-light">
-                                    ({profile.characterStats.creLabel})
+                                    ({dict.characterStats.creLabel})
                                 </span>
                             </span>
                         </div>
@@ -161,7 +163,7 @@ export default function CharacterCard({
 
                 {/* Stack chips */}
                 <motion.div className="flex flex-wrap gap-1.5" variants={fadeUp}>
-                    {profile.stackChips.map((chip, i) => (
+                    {dict.stackChips.map((chip, i) => (
                         <motion.span
                             key={chip}
                             className="chip text-[0.6rem]"

@@ -1,14 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { staggerContainer, fadeUp } from "./AnimeAnimations";
+
+interface TimelineProps {
+    dict: Dictionary;
+}
 
 /**
  * Mentor Arc — vertical timeline with anime-animated experience cards.
  */
-export default function Timeline() {
+export default function Timeline({ dict }: TimelineProps) {
     return (
         <SectionReveal id="experience" className="py-20">
             <div className="mx-auto max-w-6xl px-6">
@@ -30,7 +34,7 @@ export default function Timeline() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
                 >
-                    MENTOR ARC
+                    {dict.sectionHeadings.experience}
                 </motion.h2>
 
                 {/* Timeline — animated vertical line + staggered cards */}
@@ -52,7 +56,7 @@ export default function Timeline() {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.1 }}
                     >
-                        {profile.timeline.map((item, i) => (
+                        {dict.timeline.map((item, i) => (
                             <motion.div key={i} className="relative" variants={fadeUp}>
                                 {/* Timeline dot — pops in */}
                                 <motion.span

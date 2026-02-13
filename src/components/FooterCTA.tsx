@@ -1,15 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { staggerContainer, fadeUp, scaleUp } from "./AnimeAnimations";
+
+interface FooterCTAProps {
+    dict: Dictionary;
+}
 
 /**
  * Footer CTA — "Ready for the next arc?" with anime reveal animations.
  */
-export default function FooterCTA() {
-    const { contact } = profile;
+export default function FooterCTA({ dict }: FooterCTAProps) {
+    const { contact } = dict;
 
     // Split heading into words for staggered animation
     const headingWords = contact.heading.split(" ");
@@ -61,7 +65,7 @@ export default function FooterCTA() {
                                 delay: 0.15 + i * 0.1,
                                 ease: [0.25, 0.1, 0.25, 1],
                             }}
-                            className={word === "ARC?" ? "text-blood" : ""}
+                            className={word === "ARC?" || word === "التالي؟" ? "text-blood" : ""}
                         >
                             {word}
                         </motion.span>
@@ -98,7 +102,7 @@ export default function FooterCTA() {
                         }}
                         whileTap={{ scale: 0.97 }}
                     >
-                        ✉ Email Me
+                        {dict.buttonLabels.emailMe}
                     </motion.a>
                     <motion.a
                         href={contact.linkedin}
@@ -112,7 +116,7 @@ export default function FooterCTA() {
                         }}
                         whileTap={{ scale: 0.97 }}
                     >
-                        LinkedIn
+                        {dict.buttonLabels.linkedin}
                     </motion.a>
                     <motion.a
                         href={contact.github}
@@ -126,7 +130,7 @@ export default function FooterCTA() {
                         }}
                         whileTap={{ scale: 0.97 }}
                     >
-                        ◆ GitHub
+                        {dict.buttonLabels.repo}
                     </motion.a>
                 </motion.div>
             </motion.div>
@@ -146,8 +150,7 @@ export default function FooterCTA() {
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     />
                     <span>
-                        {profile.name} — Portfolio &copy; {new Date().getFullYear()}. All
-                        rights reserved.
+                        {dict.footer.copyright}
                     </span>
                 </div>
             </motion.div>

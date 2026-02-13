@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import {
     staggerContainer,
@@ -15,8 +15,12 @@ const progressWidths = [
     [68, 62, 70, 72],
 ];
 
-export default function LoadoutSection() {
-    const { skills } = profile;
+interface LoadoutSectionProps {
+    dict: Dictionary;
+}
+
+export default function LoadoutSection({ dict }: LoadoutSectionProps) {
+    const { skills } = dict;
 
     return (
         <SectionReveal id="skills" className="py-20">
@@ -39,7 +43,7 @@ export default function LoadoutSection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <h2 className="section-heading">TECH LOADOUT</h2>
+                    <h2 className="section-heading">{dict.sectionHeadings.techLoadout}</h2>
                     <span className="section-label">{skills.sectionLabel}</span>
                 </motion.div>
 

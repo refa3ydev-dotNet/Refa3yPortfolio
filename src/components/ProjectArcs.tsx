@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import {
     staggerContainer,
@@ -13,7 +13,11 @@ import {
     HorizontalSpeedLines,
 } from "./AnimeAnimations";
 
-export default function ProjectArcs() {
+interface ProjectArcsProps {
+    dict: Dictionary;
+}
+
+export default function ProjectArcs({ dict }: ProjectArcsProps) {
     return (
         <SectionReveal id="projects" className="py-20 relative overflow-hidden">
             {/* Decorative speed lines */}
@@ -38,7 +42,7 @@ export default function ProjectArcs() {
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                    PROJECT ARCS
+                    {dict.sectionHeadings.projects}
                 </motion.h2>
 
                 {/* Project cards grid — staggered */}
@@ -49,7 +53,7 @@ export default function ProjectArcs() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.15 }}
                 >
-                    {profile.projects.map((project) => (
+                    {dict.projects.map((project) => (
                         <motion.article
                             key={project.episode}
                             className="manga-frame overflow-hidden group"
@@ -146,14 +150,14 @@ export default function ProjectArcs() {
                                         whileHover={{ scale: 1.05, y: -2 }}
                                         whileTap={{ scale: 0.97 }}
                                     >
-                                        GitHub
+                                        {dict.buttonLabels.github}
                                     </motion.a>
                                     <motion.button
                                         className="btn-primary text-xs py-2 px-4"
                                         whileHover={{ scale: 1.05, y: -2 }}
                                         whileTap={{ scale: 0.97 }}
                                     >
-                                        Case Study
+                                        {dict.buttonLabels.caseStudy}
                                     </motion.button>
                                 </div>
                             </div>
@@ -174,7 +178,7 @@ export default function ProjectArcs() {
                             className="text-sm font-bold tracking-wider uppercase text-ink hover:text-blood transition-colors"
                             whileHover={{ x: 8 }}
                         >
-                            READ MORE CHAPTERS →
+                            {dict.buttonLabels.readMore}
                         </motion.button>
                     </Link>
                 </motion.p>
