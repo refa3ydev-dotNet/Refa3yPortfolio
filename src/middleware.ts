@@ -20,6 +20,7 @@ export function middleware(req: NextRequest) {
         pathname.startsWith("/api") ||
         pathname === "/robots.txt" ||
         pathname === "/sitemap-v2.xml" ||
+        pathname === "/sitemap.xml" ||
         (pathname.startsWith("/google") && pathname.endsWith(".html")) ||
         pathname.match(/\.(.*)$/) // any file with extension (.png .jpg .svg .html ...)
     ) {
