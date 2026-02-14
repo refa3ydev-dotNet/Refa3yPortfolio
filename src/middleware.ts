@@ -21,6 +21,7 @@ export function middleware(req: NextRequest) {
         pathname === "/robots.txt" ||
         pathname === "/sitemap-v2.xml" ||
         pathname === "/sitemap.xml" ||
+        pathname === "/sitemap2.xml" ||
         (pathname.startsWith("/google") && pathname.endsWith(".html")) ||
         pathname.match(/\.(.*)$/) // any file with extension (.png .jpg .svg .html ...)
     ) {
