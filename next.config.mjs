@@ -5,6 +5,14 @@ const nextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap-main.xml",
+        destination: "/sitemap.xml",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
