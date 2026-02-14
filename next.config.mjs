@@ -8,7 +8,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/sitemap-main.xml",
+        source: "/sitemap-v2.xml",
         destination: "/sitemap.xml",
       },
     ];

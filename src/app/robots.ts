@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: "/",
             disallow: "/private/",
         },
-        sitemap: `${SITE_URL}/sitemap-main.xml`,
+        sitemap: `${SITE_URL}/sitemap-v2.xml`,
     };
 }
