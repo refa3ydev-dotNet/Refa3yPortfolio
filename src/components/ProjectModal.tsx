@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
@@ -26,18 +26,24 @@ interface ProjectModalProps {
     };
 }
 
-const overlayVariants = {
+const overlayVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
 };
 
-const modalVariants = {
+const modalVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9, y: 20 },
     visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 25, stiffness: 300 } },
     exit: { opacity: 0, scale: 0.95, y: 10 },
 };
 
 export default function ProjectModal({ project, isOpen, onClose, labels }: ProjectModalProps) {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     // Prevent body scroll when modal is open
     useEffect(() => {
         if (isOpen) {
@@ -50,12 +56,14 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
         };
     }, [isOpen]);
 
+    if (!mounted) return null;
+
     const hasLiveLink = !!project?.link;
 
-    return (
+    return createPortal(
         <AnimatePresence>
             {isOpen && project && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
                     {/* Backdrop */}
                     <motion.div
                         className="absolute inset-0 bg-paper-dark/90 backdrop-blur-sm"
@@ -120,7 +128,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                                 {/* Description */}
                                 <div>
                                     <h3 className="text-sm font-bold text-blood uppercase tracking-wider mb-2">
-                     // Project Details
+                                        // Project Details
                                     </h3>
                                     <p className="text-ink text-base leading-relaxed">
                                         {project.impact}
@@ -130,7 +138,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                                 {/* Tech Stack */}
                                 <div>
                                     <h3 className="text-sm font-bold text-blood uppercase tracking-wider mb-2">
-                     // Tech Stack
+                                        // Tech Stack
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.techChips.map((chip) => (
@@ -154,7 +162,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                                         {labels.github}
                                     </a>
 
-                                    {/* Live Link Button (Always show generic link button even if iframe is there, for full tab open) */}
+                                    {/* Live Link Button */}
                                     {hasLiveLink && (
                                         <a
                                             href={project.link}
@@ -173,6 +181,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                     </motion.div>
                 </div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }
