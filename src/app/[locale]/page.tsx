@@ -19,6 +19,19 @@ export default function Home({ params: { locale } }: HomeProps) {
   return (
     <>
       <main>
+        {/* SEO Hidden Text for Ranking */}
+        <section className="sr-only">
+          <h1>Omar Ayman - Portfolio</h1>
+          <p>
+            I am Omar Ayman, a web developer also known as Omar Refay, Omar Refaey, Omar Refa3y, and Omar Refaaey.
+            Explore my projects and skills in web development.
+          </p>
+          <p lang="ar" dir="rtl">
+            أنا عمر أيمن (عمر رفاعي)، مطور ويب ومبرمج.
+            (عمر رفاعي مطور ويب، عمر أيمن مطور ويب).
+          </p>
+        </section>
+
         <Hero dict={dict} />
         <LoadoutSection dict={dict} />
         <ProjectArcs dict={dict} />

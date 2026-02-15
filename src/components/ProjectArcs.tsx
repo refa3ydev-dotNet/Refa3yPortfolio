@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
+import { useState } from "react";
+import ProjectModal from "./ProjectModal";
 import {
     staggerContainer,
     fadeUp,
@@ -18,6 +20,11 @@ interface ProjectArcsProps {
 }
 
 export default function ProjectArcs({ dict }: ProjectArcsProps) {
+    const [selectedProject, setSelectedProject] = useState<any>(null);
+
+    // Limit to first 2 projects
+    const displayedProjects = dict.projects.slice(0, 2);
+
     return (
         <SectionReveal id="projects" className="py-20 relative overflow-hidden">
             {/* Decorative speed lines */}
@@ -53,16 +60,17 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.15 }}
                 >
-                    {dict.projects.map((project) => (
+                    {displayedProjects.map((project: any) => (
                         <motion.article
                             key={project.episode}
-                            className="manga-frame overflow-hidden group"
+                            className="manga-frame overflow-hidden group cursor-pointer"
                             variants={fadeUp}
                             whileHover={{
                                 y: -6,
                                 boxShadow: "8px 8px 0 0 #111111",
                                 transition: { duration: 0.25 },
                             }}
+                            onClick={() => setSelectedProject(project)}
                         >
                             {/* Project image — clip reveal */}
                             <motion.div
@@ -104,25 +112,20 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                     <h3 className="text-lg font-black uppercase tracking-wide">
                                         {project.title}
                                     </h3>
-                                    <motion.a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-ink hover:text-blood transition-colors shrink-0 text-lg"
-                                        aria-label={`${project.title} on GitHub`}
-                                        whileHover={{ scale: 1.2, rotate: 15 }}
+                                    <span
+                                        className="text-ink group-hover:text-blood transition-colors shrink-0 text-sm font-bold border-b border-transparent group-hover:border-blood"
                                     >
-                                        ↗
-                                    </motion.a>
+                                        [VIEW]
+                                    </span>
                                 </div>
 
-                                <p className="text-sm text-ink-light leading-relaxed">
+                                <p className="text-sm text-ink-light leading-relaxed line-clamp-2">
                                     {project.impact}
                                 </p>
 
-                                {/* Tech chips — pop-in */}
+                                {/* Tech chips */}
                                 <div className="flex flex-wrap gap-1.5">
-                                    {project.techChips.map((chip, i) => (
+                                    {project.techChips.map((chip: string, i: number) => (
                                         <motion.span
                                             key={chip}
                                             className="chip text-[0.65rem]"
@@ -138,27 +141,6 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                             {chip}
                                         </motion.span>
                                     ))}
-                                </div>
-
-                                {/* Buttons */}
-                                <div className="flex gap-3 pt-1">
-                                    <motion.a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="btn-secondary text-xs py-2 px-4"
-                                        whileHover={{ scale: 1.05, y: -2 }}
-                                        whileTap={{ scale: 0.97 }}
-                                    >
-                                        {dict.buttonLabels.github}
-                                    </motion.a>
-                                    <motion.button
-                                        className="btn-primary text-xs py-2 px-4"
-                                        whileHover={{ scale: 1.05, y: -2 }}
-                                        whileTap={{ scale: 0.97 }}
-                                    >
-                                        {dict.buttonLabels.caseStudy}
-                                    </motion.button>
                                 </div>
                             </div>
                         </motion.article>
@@ -182,8 +164,17 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                         </motion.button>
                     </Link>
                 </motion.p>
-
             </div>
+
+            <ProjectModal
+                project={selectedProject}
+                isOpen={!!selectedProject}
+                onClose={() => setSelectedProject(null)}
+                labels={{
+                    github: dict.buttonLabels.github,
+                    live: "Live Demo"
+                }}
+            />
         </SectionReveal>
     );
 }

@@ -68,18 +68,43 @@ export const profile = {
             title: "Movies Web App",
             impact: "3-Tier architecture + auth + repository/UoW structure.",
             techChips: ["ASP.NET MVC", "SQL Server", "EF"],
-            github: "https://github.com/refa3ydev-dotNet/movies-web-app", // Replace
-            // Replace with your project screenshot in /public/projects/
-            image: "/projects/movies-app.svg",
+            github: "https://github.com/refa3ydev-dotNet/Cinema-WepApp",
+            image: "/projects/movies-app.png",
         },
         {
             episode: "EP.02",
-            title: "TeckXpress",
+            title: "TechXpress",
             impact: "Stripe payments + admin dashboard + full CRUD modules.",
             techChips: ["ASP.NET Core", "SQL Server", "Stripe"],
-            github: "https://github.com/refa3ydev-dotNet/teckxpress", // Replace
-            // Replace with your project screenshot in /public/projects/
-            image: "/projects/teckxpress.svg",
+            github: "https://github.com/Marwan-Farouk/TechXpress-Project/tree/main/TechXpress",
+            image: "/projects/teckxpress.png",
+        },
+        {
+            episode: "EP.03",
+            title: "ValentineTrend",
+            impact: "Interactive trend analysis application deployed on Netlify.",
+            techChips: ["React", "Frontend", "Netlify"],
+            github: "https://github.com/refa3ydev-dotNet/Valentine_Trend",
+            link: "https://valentinetrend.netlify.app/",
+            image: "/projects/Valentine-trend.png",
+        },
+        {
+            episode: "EP.04",
+            title: "Portfolio v1",
+            impact: "Previous version of my personal portfolio.",
+            techChips: ["HTML/CSS", "JavaScript"],
+            github: "https://github.com/Omar-Ref3y/portfolio",
+            link: "https://3marportfolio.netlify.app/",
+            image: "/projects/Portfolio-1.png",
+        },
+        {
+            episode: "EP.05",
+            title: "Portfolio v2",
+            impact: "Second iteration of my portfolio with enhanced UI.",
+            techChips: ["React", "Animation"],
+            github: "https://github.com/Omar-Ref3y/My_portfolio",
+            link: "https://p3mar.netlify.app/",
+            image: "/projects/Portfolio-2.png",
         },
     ],
 

@@ -21,6 +21,12 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   const title = isAr ? `${dict.fullName} | ${dict.title}` : `${dict.fullName} | ${dict.title}`;
   const description = dict.hero.subtitle;
 
+  // Construct canonical URL:
+  // If locale is default (en), canonical should be without locale prefix (root).
+  // If locale is ar, canonical should be /ar
+  const path = locale === "en" ? "/" : `/${locale}`;
+  const canonical = `${SITE_URL}${path === "/" ? "" : path}`;
+
   return {
     metadataBase: new URL(SITE_URL),
     title: {
@@ -31,13 +37,13 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}`,
+      url: canonical,
       siteName: SITE_NAME,
       locale: isAr ? "ar_EG" : "en_US",
       type: "website",
       images: [
         {
-          url: isAr ? "/og-ar.jpg" : "/OG.jpg", // Create og-ar.jpg later
+          url: isAr ? "/og-ar.jpg" : "/OG.jpg",
           width: 1200,
           height: 630,
           alt: title,
@@ -51,10 +57,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       images: [isAr ? "/og-ar.jpg" : "/OG.jpg"],
     },
     alternates: {
-      canonical: `${SITE_URL}/${locale}`,
+      canonical: canonical,
       languages: {
-        en: `${SITE_URL}/en`,
-        ar: `${SITE_URL}/ar`,
+        en: "/", // Point English to root
+        ar: "/ar",
+        "x-default": "/",
       },
     },
     robots: {
