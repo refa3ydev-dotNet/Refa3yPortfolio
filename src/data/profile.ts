@@ -2,6 +2,16 @@
 // PROFILE DATA — Edit this file to update all portfolio content
 // ============================================================
 
+export interface Project {
+    episode: string;
+    title: string;
+    impact: string;
+    techChips: string[];
+    github: string;
+    image: string;
+    link?: string;
+}
+
 export const profile = {
     name: "REFAY",
     fullName: "Omar Ayman",
@@ -62,6 +72,8 @@ export const profile = {
     },
 
     // Projects
+
+
     projects: [
         {
             episode: "EP.01",

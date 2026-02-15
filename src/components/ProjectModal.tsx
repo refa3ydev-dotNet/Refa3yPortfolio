@@ -128,7 +128,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                                 {/* Description */}
                                 <div>
                                     <h3 className="text-sm font-bold text-blood uppercase tracking-wider mb-2">
-                                        // Project Details
+                                        {"// Project Details"}
                                     </h3>
                                     <p className="text-ink text-base leading-relaxed">
                                         {project.impact}
@@ -138,7 +138,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                                 {/* Tech Stack */}
                                 <div>
                                     <h3 className="text-sm font-bold text-blood uppercase tracking-wider mb-2">
-                                        // Tech Stack
+                                        {"// Tech Stack"}
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.techChips.map((chip) => (

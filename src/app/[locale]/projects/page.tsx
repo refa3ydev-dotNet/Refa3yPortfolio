@@ -12,6 +12,7 @@ import { Locale } from "@/i18n/config";
 import { messages } from "@/i18n/messages";
 import { useState } from "react";
 import ProjectModal from "@/components/ProjectModal";
+import { Project } from "@/data/profile";
 
 interface ProjectsPageProps {
     params: { locale: Locale };
@@ -19,7 +20,7 @@ interface ProjectsPageProps {
 
 export default function ProjectsPage({ params: { locale } }: ProjectsPageProps) {
     const dict = messages[locale] || messages.en;
-    const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     return (
         <>
@@ -46,7 +47,7 @@ export default function ProjectsPage({ params: { locale } }: ProjectsPageProps) 
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {dict.projects.map((project: any, index: number) => (
+                        {dict.projects.map((project: Project, index: number) => (
                             <motion.article
                                 key={project.episode + index}
                                 className="manga-frame overflow-hidden group flex flex-col h-full bg-paper-light border border-ink/10 hover:border-ink transition-colors duration-300 cursor-pointer"

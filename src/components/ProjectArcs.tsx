@@ -7,6 +7,7 @@ import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { useState } from "react";
 import ProjectModal from "./ProjectModal";
+import { Project } from "@/data/profile";
 import {
     staggerContainer,
     fadeUp,
@@ -20,7 +21,7 @@ interface ProjectArcsProps {
 }
 
 export default function ProjectArcs({ dict }: ProjectArcsProps) {
-    const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     // Limit to first 2 projects
     const displayedProjects = dict.projects.slice(0, 2);
@@ -60,7 +61,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.15 }}
                 >
-                    {displayedProjects.map((project: any) => (
+                    {displayedProjects.map((project: Project) => (
                         <motion.article
                             key={project.episode}
                             className="manga-frame overflow-hidden group cursor-pointer"
