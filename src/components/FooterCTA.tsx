@@ -150,7 +150,7 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     />
                     <span>
-                        {dict.footer.copyright}
+                        Designed & Built by Omar Ayman (عمر ايمن)
                     </span>
                 </div>
             </motion.div>

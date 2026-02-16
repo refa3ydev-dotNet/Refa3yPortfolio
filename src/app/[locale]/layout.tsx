@@ -18,12 +18,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }): Promise<Metadata> {
   const dict = messages[locale] || messages.en;
   const isAr = locale === "ar";
-  const title = isAr ? `${dict.fullName} | ${dict.title}` : `${dict.fullName} | ${dict.title}`;
-  const description = dict.hero.subtitle;
+
+  const title = "Omar Ayman (Refay) | .NET Backend Developer";
+  const description =
+    "Junior .NET Developer (Omar Ayman / عمر ايمن) specializing in ASP.NET Core & React. Building scalable backend systems and clean architecture solutions.";
 
   // Construct canonical URL:
-  // If locale is default (en), canonical should be without locale prefix (root).
-  // If locale is ar, canonical should be /ar
   const path = locale === "en" ? "/" : `/${locale}`;
   const canonical = `${SITE_URL}${path === "/" ? "" : path}`;
 
@@ -31,22 +31,36 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     metadataBase: new URL(SITE_URL),
     title: {
       default: title,
-      template: `%s | ${title}`,
+      template: `%s | .NET Backend Developer`,
     },
     description,
+    keywords: [
+      "Omar Ayman",
+      "Omar Refay",
+      "عمر ايمن",
+      "عمر رفاعي",
+      ".NET Developer",
+      "Backend",
+      "ASP.NET Core",
+      "Egypt",
+      "Full Stack",
+    ],
+    authors: [{ name: "Omar Ayman", url: SITE_URL }],
+    creator: "Omar Ayman",
+    publisher: "Omar Ayman",
     openGraph: {
       title,
       description,
       url: canonical,
-      siteName: SITE_NAME,
+      siteName: "Omar Ayman (Refay) Portfolio",
       locale: isAr ? "ar_EG" : "en_US",
       type: "website",
       images: [
         {
-          url: isAr ? "/og-ar.jpg" : "/OG.jpg",
+          url: "/og-card.png",
           width: 1200,
           height: 630,
-          alt: title,
+          alt: "Omar Ayman (Refay) - .NET Developer - عمر ايمن",
         },
       ],
     },
@@ -54,12 +68,18 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       card: "summary_large_image",
       title,
       description,
-      images: [isAr ? "/og-ar.jpg" : "/OG.jpg"],
+      images: ["/og-card.png"],
+      creator: "@refa3ydev",
+    },
+    icons: {
+      icon: "/logo.png",
+      shortcut: "/logo.png",
+      apple: "/logo.png",
     },
     alternates: {
       canonical: canonical,
       languages: {
-        en: "/", // Point English to root
+        en: "/",
         ar: "/ar",
         "x-default": "/",
       },
@@ -67,7 +87,14 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     robots: {
       index: true,
       follow: true,
-    }
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
@@ -81,6 +108,40 @@ export default function RootLayout({
   const dict = messages[locale] || messages.en;
   const dir = locale === "ar" ? "rtl" : "ltr";
 
+  // Person Schema (JSON-LD)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Omar Ayman",
+    alternateName: [
+      "Omar Refay",
+      "Omar Ayman Refay",
+      "عمر ايمن",
+      "عمر رفاعي",
+      "عمر ايمن ويب ديفيلوبر",
+      "عمر رفاعي دوت نت",
+    ],
+    jobTitle: "Full-Stack .NET Developer",
+    url: "https://omarrefay.vercel.app/",
+    sameAs: [
+      "https://www.linkedin.com/in/omar-ayman-refay/",
+      "https://github.com/refa3ydev-dotNet",
+      "https://www.facebook.com/omar.refa3y",
+    ],
+    knowsAbout: [
+      "ASP.NET Core",
+      "C#",
+      "SQL Server",
+      "React",
+      "Software Architecture",
+    ],
+    image: "https://omarrefay.vercel.app/og-card.png",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "Egypt",
+    },
+  };
+
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
       <head>
@@ -89,6 +150,10 @@ export default function RootLayout({
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <script
           dangerouslySetInnerHTML={{

@@ -49,7 +49,7 @@ export default function CharacterCard({
             >
                 <Image
                     src={src}
-                    alt={`${dict.fullName} — avatar`}
+                    alt="Omar Ayman (Refay) - .NET Developer - عمر ايمن"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 340px"
