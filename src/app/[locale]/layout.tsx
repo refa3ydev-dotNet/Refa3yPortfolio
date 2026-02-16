@@ -9,7 +9,7 @@ import { SITE_URL } from "@/lib/site";
 import { locales, Locale } from "@/i18n/config";
 import { messages } from "@/i18n/messages";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
