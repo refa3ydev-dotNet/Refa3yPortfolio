@@ -8,12 +8,21 @@ export default function LanguageSwitcher({ locale }: { locale: Locale }) {
     const router = useRouter();
 
     const toggleLanguage = () => {
-        const newLocale = locale === "en" ? "ar" : "en";
-        // Default replacement: assumes pathname starts with /en or /ar
-        // If pathname is just /en, replace with /ar
-        // If pathname is /en/projects, replace with /ar/projects
-        const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
-        router.push(newPath);
+        // If current locale is 'en', we want to go to 'ar'
+        // 'en' creates paths like '/' or '/projects' (rewritten by middleware)
+        // 'ar' creates paths like '/ar' or '/ar/projects'
+        if (locale === "en") {
+            // English -> Arabic
+            // If on root '/', go to '/ar'
+            // If on '/projects', go to '/ar/projects'
+            router.push(`/ar${pathname}`);
+        } else {
+            // Arabic -> English
+            // If on '/ar', replace with '/' -> '//' which is fine or better ''
+            // '/ar/projects' -> '/projects'
+            const newPath = pathname.replace(/^\/ar/, "") || "/";
+            router.push(newPath);
+        }
     };
 
     return (

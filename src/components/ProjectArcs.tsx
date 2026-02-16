@@ -84,7 +84,6 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     sizes="(max-width: 768px) 100vw, 50vw"
-                                    unoptimized
                                 />
                                 {/* Episode badge */}
                                 <motion.span

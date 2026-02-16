@@ -42,7 +42,7 @@ export const profile = {
     stackChips: [".NET Core", "React", "SQL", "MVC"],
 
     // Avatar
-    avatarSrc: "/projects/OmarAyman.jpeg",
+    avatarSrc: "/projects/OmarAyman.webp",
 
     // Navigation
     nav: [
