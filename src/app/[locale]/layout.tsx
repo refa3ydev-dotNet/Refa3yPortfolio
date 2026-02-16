@@ -5,7 +5,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
 import { locales, Locale } from "@/i18n/config";
 import { messages } from "@/i18n/messages";
 
@@ -16,7 +16,6 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }): Promise<Metadata> {
-  const dict = messages[locale] || messages.en;
   const isAr = locale === "ar";
 
   const title = "Omar Ayman (Refay) | .NET Backend Developer";

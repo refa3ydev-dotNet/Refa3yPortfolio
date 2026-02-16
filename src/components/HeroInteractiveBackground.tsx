@@ -121,14 +121,15 @@ export default function HeroInteractiveBackground({ mouseX, mouseY }: HeroIntera
                 </svg>
             </motion.div>
 
-            {/* 5. Ink Grain / Noise (Front Background Layer) */}
+            {/* 5. Ink Grain / Noise (Static CSS Replacement) */}
             <motion.div
-                className="absolute inset-[-30px] opacity-20 mix-blend-overlay"
+                className="absolute inset-[-30px] opacity-10 mix-blend-overlay"
                 style={{ x: xGrain, y: yGrain }}
             >
                 <div className="w-full h-full" style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E")`,
-                    filter: isDark ? "contrast(1.2) brightness(1.2)" : "none",
+                    backgroundImage: `repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 1px, transparent 50%)`,
+                    backgroundSize: "4px 4px",
+                    filter: isDark ? "invert(1)" : "none",
                 }} />
             </motion.div>
 

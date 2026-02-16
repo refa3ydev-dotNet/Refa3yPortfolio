@@ -35,7 +35,7 @@ export default function InitialLoader() {
         // Keep visible for min time (e.g. 1.2s total including animation)
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 1200); // 1.2s delay before fading out
+        }, 600); // reduced from 1200ms for speed
 
         return () => clearTimeout(timer);
     }, []);
