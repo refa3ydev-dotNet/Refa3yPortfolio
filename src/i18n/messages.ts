@@ -33,15 +33,24 @@ const ar: Dictionary = {
 
     avatarSrc: "/projects/OmarAyman.jpeg",
 
+    // Scroll Intro
+    scrollIntro: {
+        text1: "مرحباً، أنا عمر رفاعي",
+        text2: "مطور ويب شامل (FULL-STACK)",
+        text3: "أبني أنظمة خلفية قوية بـ .NET",
+        text4: "وأصمم واجهات تفاعلية بـ REACT",
+        text5: "جاهز للفصل القادم (NEXT ARC)",
+    },
+
     nav: [
-        { id: "home", label: "00 فصل الرئيسية", href: "#home" },
-        { id: "skills", label: "فصل المهارات 01", href: "#skills" },
-        { id: "services", label: " 02 فصل الخدمات", href: "#services" },
-        { id: "process", label: " 03 فصل العمليات", href: "#process" },
-        { id: "about", label: "فصل من أنا 04", href: "#about" },
-        { id: "projects", label: " 05 فصل المشاريع", href: "#projects" },
-        { id: "experience", label: " 06 فصل الخبرة", href: "#experience" },
-        { id: "testimonials", label: " 07 فصل التوصيات", href: "#testimonials" },
+        { id: "home", label: "ف 00 الرئيسية", href: "#home" },
+        { id: "skills", label: "ف 01 المهارات", href: "#skills" },
+        { id: "services", label: "ف 02 الخدمات", href: "#services" },
+        { id: "projects", label: "ف 03 المشاريع", href: "#projects" },
+        { id: "process", label: "ف 04 العمليات", href: "#process" },
+        { id: "experience", label: "ف 05 الخبرة", href: "#experience" },
+        { id: "testimonials", label: "ف 06 التقييمات", href: "#testimonials" },
+        { id: "about", label: "ف 07 من أنا", href: "#about" },
     ],
 
     // Testimonials

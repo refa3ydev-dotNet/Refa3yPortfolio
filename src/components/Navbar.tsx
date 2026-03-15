@@ -16,6 +16,7 @@ interface NavbarProps {
 export default function Navbar({ dict, locale }: NavbarProps) {
     const [active, setActive] = useState("home");
     const [scrolled, setScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const navRef = useRef<HTMLElement>(null);
     const { scrollY } = useScroll();
@@ -23,13 +24,34 @@ export default function Navbar({ dict, locale }: NavbarProps) {
     const pathname = usePathname();
     const router = useRouter();
 
+    const checkVisibility = () => {
+        const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === "/";
+        
+        if (!isHomePage) {
+            setIsVisible(true);
+            return;
+        }
+
+        const heroSection = document.getElementById("home");
+        if (heroSection) {
+            const rect = heroSection.getBoundingClientRect();
+            setIsVisible(rect.top <= 100);
+        } else {
+            setIsVisible(false);
+        }
+    };
+
+    useEffect(() => {
+        checkVisibility();
+    }, [pathname, locale]);
+
     useMotionValueEvent(scrollY, "change", (latest) => {
         setScrolled(latest > 20);
+        checkVisibility();
     });
 
     /* Track active section via IntersectionObserver */
     useEffect(() => {
-        // Only run observer if we are on the home page of the current locale
         if (pathname !== `/${locale}`) {
             setActive("");
             return;
@@ -56,13 +78,10 @@ export default function Navbar({ dict, locale }: NavbarProps) {
 
     const handleClick = (href: string) => {
         setMobileOpen(false);
-        // If we are not on the home page of the current locale, navigate there
         if (pathname !== `/${locale}`) {
-            // href is mostly "#home", "#skills" etc.
             router.push(`/${locale}${href}`);
             return;
         }
-        // Smooth scroll if on home page
         const el = document.querySelector(href);
         el?.scrollIntoView({ behavior: "smooth" });
     };
@@ -70,16 +89,14 @@ export default function Navbar({ dict, locale }: NavbarProps) {
     return (
         <motion.header
             ref={navRef}
-            initial={{ y: -80 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ y: -100 }}
+            animate={{ y: isVisible ? 0 : -100 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 ${scrolled
                 ? "bg-paper/95 backdrop-blur-sm border-b-2 border-ink"
                 : "bg-transparent"
                 }`}
-            dir="ltr" // Force LTR for navbar layout consistency if desired, or let it flip. 
-        // The prompt said "ar => rtl". If I let it flip, flex-row becomes flipped.
-        // Usually navbar stays LTR or flips completely. Let's respect global DIR.
+            dir="ltr"
         >
             <nav
                 className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
@@ -91,7 +108,6 @@ export default function Navbar({ dict, locale }: NavbarProps) {
                     className="flex items-center gap-2.5 text-ink"
                     aria-label="Go to top"
                 >
-                    {/* AM DEV circle logo */}
                     <svg
                         viewBox="0 0 48 48"
                         className="w-9 h-9 shrink-0"
@@ -175,7 +191,6 @@ export default function Navbar({ dict, locale }: NavbarProps) {
                             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
                         >
                             {theme === "dark" ? (
-                                /* Sun icon */
                                 <svg
                                     width="18"
                                     height="18"
@@ -197,7 +212,6 @@ export default function Navbar({ dict, locale }: NavbarProps) {
                                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                                 </svg>
                             ) : (
-                                /* Moon icon */
                                 <svg
                                     width="18"
                                     height="18"

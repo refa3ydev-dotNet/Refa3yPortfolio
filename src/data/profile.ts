@@ -32,12 +32,29 @@ export interface AboutMe {
     currentlyBuilding: string;
 }
 
+export interface ScrollIntro {
+    text1: string;
+    text2: string;
+    text3: string;
+    text4: string;
+    text5: string;
+}
+
 export const profile = {
     name: "REFAY",
     fullName: "Omar Ayman",
     title: "Junior Full-Stack Developer",
     location: "Sohag, Egypt",
     expectedGraduation: "June 2026",
+
+    // Scroll Intro
+    scrollIntro: {
+        text1: "HI, I'M OMAR REFAY",
+        text2: "FULL-STACK WEB DEVELOPER",
+        text3: "BUILDING ROBUST .NET BACKENDS",
+        text4: "CRAFTING INTERACTIVE REACT UIs",
+        text5: "READY FOR THE NEXT ARC",
+    },
 
     // Hero
     hero: {
@@ -66,14 +83,14 @@ export const profile = {
 
     // Navigation
     nav: [
-        { id: "home", label: "CH.01 HOME", href: "#home" },
-        { id: "skills", label: "CH.02 SKILLS", href: "#skills" },
-        { id: "services", label: "CH.03 SERVICES", href: "#services" },
-        { id: "process", label: "CH.05 PROCESS", href: "#process" },
+        { id: "home", label: "CH.00 HOME", href: "#home" },
+        { id: "skills", label: "CH.01 SKILLS", href: "#skills" },
+        { id: "services", label: "CH.02 SERVICES", href: "#services" },
+        { id: "projects", label: "CH.03 PROJECTS", href: "#projects" },
+        { id: "process", label: "CH.04 PROCESS", href: "#process" },
+        { id: "experience", label: "CH.05 EXPERIENCE", href: "#experience" },
+        { id: "testimonials", label: "CH.06 REVIEWS", href: "#testimonials" },
         { id: "about", label: "CH.07 ABOUT", href: "#about" },
-        { id: "projects", label: "CH.04 PROJECTS", href: "#projects" },
-        { id: "experience", label: "CH.06 EXPERIENCE", href: "#experience" },
-        { id: "testimonials", label: "CH.07 REVIEWS", href: "#testimonials" },
     ],
 
     // Testimonials

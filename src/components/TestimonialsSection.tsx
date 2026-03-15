@@ -105,10 +105,10 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
 
     return (
         <SectionReveal id="testimonials" className="py-24 relative overflow-hidden dark:bg-[#0F111A]">
-            {/* Background Manga FX: Impact Stars */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Background Manga FX: Impact Stars - Subtle Watermarks */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
                 <motion.div 
-                    className="absolute top-20 left-[10%] text-ink/5 dark:text-white/5 font-black text-9xl italic"
+                    className="absolute top-20 left-[10%] text-zinc-800/[0.07] dark:text-zinc-500/[0.05] font-black text-9xl italic"
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1 }}
@@ -116,7 +116,7 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
                     WHAM!
                 </motion.div>
                 <motion.div 
-                    className="absolute bottom-40 right-[5%] text-blood/10 font-black text-8xl"
+                    className="absolute bottom-40 right-[5%] text-zinc-800/[0.07] dark:text-zinc-500/[0.05] font-black text-8xl"
                     initial={{ opacity: 0, x: 100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -125,10 +125,10 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
                 </motion.div>
             </div>
 
-            <div className="mx-auto max-w-6xl px-6 relative">
-                {/* Heading with dynamic alignment */}
+            <div className="mx-auto max-w-6xl px-6 relative z-10">
+                {/* Heading Area - High Contrast and Clear Layering */}
                 <motion.div
-                    className="text-start mb-20 relative"
+                    className="text-start mb-20 relative z-10"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -137,7 +137,7 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
                         <span className="h-px w-12 bg-blood" />
                         <span className="section-label !m-0">{testimonials.sectionLabel}</span>
                     </div>
-                    <h2 className="section-heading !text-6xl md:!text-7xl !mb-0 lowercase italic">
+                    <h2 className="section-heading !text-6xl md:!text-7xl !mb-0 lowercase italic text-ink dark:text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] dark:drop-shadow-[0_0_15px_rgba(179,38,30,0.4)]">
                         {testimonials.heading}
                     </h2>
                     

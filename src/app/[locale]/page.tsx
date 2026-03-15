@@ -1,5 +1,6 @@
 
 import Hero from "@/components/Hero";
+import ScrollIntro from "@/components/ScrollIntro";
 import LoadoutSection from "@/components/LoadoutSection";
 import WebServicesSection from "@/components/WebServicesSection";
 import CreativeProcessSection from "@/components/CreativeProcessSection";
@@ -36,6 +37,7 @@ export default function Home({ params: { locale } }: HomeProps) {
           </p>
         </section>
 
+        <ScrollIntro dict={dict} />
         <Hero dict={dict} />
         <LoadoutSection dict={dict} />
         <WebServicesSection dict={dict} />
