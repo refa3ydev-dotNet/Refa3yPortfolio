@@ -4,6 +4,7 @@ import InitialLoader from "@/components/InitialLoader";
 import ThemeProvider from "@/components/ThemeProvider";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 
 import { SITE_URL } from "@/lib/site";
 import { locales, Locale } from "@/i18n/config";
@@ -121,7 +122,7 @@ export default function RootLayout({
       "عمر رفاعي دوت نت",
     ],
     jobTitle: "Full-Stack .NET Developer",
-    url: "https://omarrefay.vercel.app/",
+    url: SITE_URL,
     sameAs: [
       "https://www.linkedin.com/in/omar-ayman-refay/",
       "https://github.com/refa3ydev-dotNet",
@@ -134,7 +135,7 @@ export default function RootLayout({
       "React",
       "Software Architecture",
     ],
-    image: "https://omarrefay.vercel.app/og-card.png",
+    image: `${SITE_URL}/og-card.png`,
     address: {
       "@type": "PostalAddress",
       addressCountry: "Egypt",
@@ -165,6 +166,7 @@ export default function RootLayout({
           <InitialLoader />
           <Navbar dict={dict} locale={locale} />
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

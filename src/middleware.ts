@@ -4,6 +4,13 @@ import { locales, defaultLocale } from "@/i18n/config";
 
 export function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
+    const hostname = req.headers.get("host");
+
+    // 0. Primary Domain Redirect (308 Permanent)
+    // Redirect omarrefay.vercel.app to omarayman.me
+    if (hostname === "omarrefay.vercel.app") {
+        return NextResponse.redirect(`https://omarayman.me${pathname}`, 308);
+    }
 
     // 1. Skip static files
     if (
