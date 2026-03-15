@@ -13,7 +13,7 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-Content-Type-Options',
@@ -26,10 +26,6 @@ const nextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=31536000; includeSubDomains; preload',
-          },
-          {
-            key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-scripts.com *.googletagmanager.com *.google-analytics.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data: blob: *.google-analytics.com *.googletagmanager.com; font-src 'self' fonts.gstatic.com; connect-src 'self' *.google-analytics.com *.googletagmanager.com *.analytics.google.com *.g.doubleclick.net; frame-src 'self' *.vercel.com; upgrade-insecure-requests;",
           },
         ],
       },

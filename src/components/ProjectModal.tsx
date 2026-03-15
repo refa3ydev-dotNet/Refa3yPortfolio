@@ -23,6 +23,8 @@ interface ProjectModalProps {
     labels: {
         github: string;
         live?: string;
+        screenshot?: string;
+        preview?: string;
     };
 }
 
@@ -39,10 +41,18 @@ const modalVariants: Variants = {
 
 export default function ProjectModal({ project, isOpen, onClose, labels }: ProjectModalProps) {
     const [mounted, setMounted] = useState(false);
+    const [viewMode, setViewMode] = useState<"screenshot" | "preview">("preview");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    // Reset view mode when project changes
+    useEffect(() => {
+        setViewMode(project?.link ? "preview" : "screenshot");
+        setIsLoading(true);
+    }, [project]);
 
     // Prevent body scroll when modal is open
     useEffect(() => {
@@ -85,9 +95,27 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between p-4 border-b border-ink bg-paper-light">
-                            <h2 className="text-xl font-black uppercase text-ink tracking-wide">
-                                {project.title}
-                            </h2>
+                            <div className="flex items-center gap-4">
+                                <h2 className="text-xl font-black uppercase text-ink tracking-wide">
+                                    {project.title}
+                                </h2>
+                                {hasLiveLink && (
+                                    <div className="hidden sm:flex bg-ink/10 p-1 rounded-sm">
+                                        <button
+                                            onClick={() => setViewMode("screenshot")}
+                                            className={`px-3 py-1 text-[10px] font-bold uppercase tracking-tighter transition-colors ${viewMode === "screenshot" ? "bg-ink text-paper" : "text-ink hover:bg-ink/5"}`}
+                                        >
+                                            {labels.screenshot || "Screenshot"}
+                                        </button>
+                                        <button
+                                            onClick={() => setViewMode("preview")}
+                                            className={`px-3 py-1 text-[10px] font-bold uppercase tracking-tighter transition-colors ${viewMode === "preview" ? "bg-blood text-paper" : "text-ink hover:bg-blood/5"}`}
+                                        >
+                                            {labels.preview || "Live Preview"}
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                             <button
                                 onClick={onClose}
                                 className="text-ink hover:text-blood transition-colors text-2xl leading-none px-2"
@@ -101,14 +129,23 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                         <div className="flex-1 overflow-y-auto p-0">
                             {/* Media Section (Iframe or Image) */}
                             <div className="w-full bg-black aspect-video relative border-b border-ink/10">
-                                {hasLiveLink ? (
-                                    <iframe
-                                        src={project.link}
-                                        title={project.title}
-                                        className="w-full h-full border-0"
-                                        allowFullScreen
-                                        loading="lazy"
-                                    />
+                                {hasLiveLink && viewMode === "preview" ? (
+                                    <>
+                                        {isLoading && (
+                                            <div className="absolute inset-0 flex items-center justify-center bg-paper-light/50 z-10">
+                                                <div className="w-8 h-8 border-4 border-blood border-t-transparent rounded-full animate-spin" />
+                                            </div>
+                                        )}
+                                        <iframe
+                                            src={project.link}
+                                            title={project.title}
+                                            className="w-full h-full border-0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowFullScreen
+                                            loading="lazy"
+                                            onLoad={() => setIsLoading(false)}
+                                        />
+                                    </>
                                 ) : (
                                     <div className="relative w-full h-full">
                                         <Image
@@ -117,14 +154,41 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                                             fill
                                             className="object-contain"
                                             sizes="(max-width: 1024px) 100vw, 80vw"
+                                            priority
                                         />
+                                        {hasLiveLink && (
+                                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:hidden">
+                                                <button
+                                                    onClick={() => setViewMode("preview")}
+                                                    className="btn-primary py-2 px-4 text-xs"
+                                                >
+                                                    {labels.preview || "View Live Preview"}
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                             </div>
 
                             {/* Details Section */}
                             <div className="p-6 space-y-6">
-
+                                {/* Mobile View Mode Toggle */}
+                                {hasLiveLink && (
+                                    <div className="flex sm:hidden w-full bg-ink/10 p-1 rounded-sm mb-4">
+                                        <button
+                                            onClick={() => setViewMode("screenshot")}
+                                            className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-tighter transition-colors ${viewMode === "screenshot" ? "bg-ink text-paper" : "text-ink"}`}
+                                        >
+                                            {labels.screenshot || "Screenshot"}
+                                        </button>
+                                        <button
+                                            onClick={() => setViewMode("preview")}
+                                            className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-tighter transition-colors ${viewMode === "preview" ? "bg-blood text-paper" : "text-ink"}`}
+                                        >
+                                            {labels.preview || "Live Preview"}
+                                        </button>
+                                    </div>
+                                )}
                                 {/* Description */}
                                 <div>
                                     <h3 className="text-sm font-bold text-blood uppercase tracking-wider mb-2">

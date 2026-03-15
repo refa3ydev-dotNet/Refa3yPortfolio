@@ -371,6 +371,8 @@ export const profile = {
         emailMe: "✉ Email Me",
         linkedin: "LinkedIn",
         repo: "◆ GitHub",
+        screenshot: "Screenshot",
+        preview: "Live Preview",
     },
     footer: {
         copyright: "Portfolio © 2026. All rights reserved.",

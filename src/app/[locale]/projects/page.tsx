@@ -108,7 +108,9 @@ export default function ProjectsPage({ params: { locale } }: ProjectsPageProps) 
                 onClose={() => setSelectedProject(null)}
                 labels={{
                     github: dict.buttonLabels.github,
-                    live: "Live Demo"
+                    live: "Live Demo",
+                    screenshot: dict.buttonLabels.screenshot,
+                    preview: dict.buttonLabels.preview
                 }}
             />
         </>

@@ -318,6 +318,8 @@ const ar: Dictionary = {
         emailMe: "✉ راسلني",
         linkedin: "لينكد إن",
         repo: "◆ جيت هب",
+        screenshot: "لقطة شاشة",
+        preview: "عرض مباشر",
     },
     footer: {
         copyright: "المعرض © 2026. جميع الحقوق محفوظة.",
