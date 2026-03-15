@@ -34,14 +34,29 @@ const ar: Dictionary = {
     avatarSrc: "/projects/OmarAyman.jpeg",
 
     nav: [
-        { id: "home", label: "ف 01 الرئيسية", href: "#home" },
-        { id: "skills", label: "ف 02 المهارات", href: "#skills" },
-        { id: "services", label: "ف 03 الخدمات", href: "#services" },
-        { id: "projects", label: "ف 04 المشاريع", href: "#projects" },
-        { id: "process", label: "ف 05 العمليات", href: "#process" },
-        { id: "experience", label: "ف 06 الخبرة", href: "#experience" },
-        { id: "about", label: "ف 07 من أنا", href: "#about" },
+        { id: "home", label: "00 فصل الرئيسية", href: "#home" },
+        { id: "skills", label: "فصل المهارات 01", href: "#skills" },
+        { id: "services", label: " 02 فصل الخدمات", href: "#services" },
+        { id: "process", label: " 03 فصل العمليات", href: "#process" },
+        { id: "about", label: "فصل من أنا 04", href: "#about" },
+        { id: "projects", label: " 05 فصل المشاريع", href: "#projects" },
+        { id: "experience", label: " 06 فصل الخبرة", href: "#experience" },
+        { id: "testimonials", label: " 07 فصل التوصيات", href: "#testimonials" },
     ],
+
+    // Testimonials
+    testimonials: {
+        sectionLabel: "// التوصيات",
+        heading: "التقييمات",
+        images: [
+            "/testmonials/testimonial (1).jpeg",
+            "/testmonials/testimonial (1).png",
+            "/testmonials/testimonial (2).jpeg",
+            "/testmonials/testimonial (2).png",
+            "/testmonials/testimonial (3).jpeg",
+            "/testmonials/testimonial (4).jpeg",
+        ],
+    },
 
     skills: {
         sectionLabel: "// المعدات",

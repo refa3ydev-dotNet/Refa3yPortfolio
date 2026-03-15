@@ -35,7 +35,7 @@ export default function CreativeProcessSection({ dict }: CreativeProcessSectionP
 
                 {/* Heading */}
                 <motion.h2
-                    className="section-heading text-right mb-14 uppercase"
+                    className="section-heading text-start mb-14 uppercase"
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}

@@ -69,11 +69,26 @@ export const profile = {
         { id: "home", label: "CH.01 HOME", href: "#home" },
         { id: "skills", label: "CH.02 SKILLS", href: "#skills" },
         { id: "services", label: "CH.03 SERVICES", href: "#services" },
-        { id: "projects", label: "CH.04 PROJECTS", href: "#projects" },
         { id: "process", label: "CH.05 PROCESS", href: "#process" },
-        { id: "experience", label: "CH.06 EXPERIENCE", href: "#experience" },
         { id: "about", label: "CH.07 ABOUT", href: "#about" },
+        { id: "projects", label: "CH.04 PROJECTS", href: "#projects" },
+        { id: "experience", label: "CH.06 EXPERIENCE", href: "#experience" },
+        { id: "testimonials", label: "CH.07 REVIEWS", href: "#testimonials" },
     ],
+
+    // Testimonials
+    testimonials: {
+        sectionLabel: "// REVIEWS",
+        heading: "Testimonials Arc",
+        images: [
+            "/testmonials/testimonial (1).jpeg",
+            "/testmonials/testimonial (1).png",
+            "/testmonials/testimonial (2).jpeg",
+            "/testmonials/testimonial (2).png",
+            "/testmonials/testimonial (3).jpeg",
+            "/testmonials/testimonial (4).jpeg",
+        ],
+    },
 
     // Skills / Tech Loadout
     skills: {

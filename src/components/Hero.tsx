@@ -147,7 +147,7 @@ export default function Hero({ dict }: HeroProps) {
                                         />
                                     </span>
                                 ) : (
-                                    "View Projects"
+                                    dict.buttonLabels.viewProjects
                                 )}
                             </motion.button>
                             <motion.a
@@ -159,7 +159,7 @@ export default function Hero({ dict }: HeroProps) {
                                 whileHover={{ scale: 1.04, y: -2 }}
                                 whileTap={{ scale: 0.97 }}
                             >
-                                Download CV
+                                {dict.buttonLabels.downloadCv}
                             </motion.a>
                         </motion.div>
                     </motion.div>

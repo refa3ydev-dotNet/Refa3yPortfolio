@@ -8,6 +8,7 @@ import ProjectArcs from "@/components/ProjectArcs";
 import FeaturedCaseStudy from "@/components/FeaturedCaseStudy";
 import Timeline from "@/components/Timeline";
 import Education from "@/components/Education";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import FooterCTA from "@/components/FooterCTA";
 import { Locale } from "@/i18n/config";
 import { messages } from "@/i18n/messages";
@@ -44,6 +45,7 @@ export default function Home({ params: { locale } }: HomeProps) {
         <FeaturedCaseStudy dict={dict} />
         <Timeline dict={dict} />
         <Education dict={dict} />
+        <TestimonialsSection dict={dict} />
         <FooterCTA dict={dict} />
       </main>
     </>

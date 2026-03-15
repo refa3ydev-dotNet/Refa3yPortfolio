@@ -44,7 +44,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
 
                 {/* Heading — scale punch-in */}
                 <motion.h2
-                    className="section-heading text-center mb-14"
+                    className="section-heading text-start mb-14"
                     variants={scaleUp}
                     initial="hidden"
                     whileInView="visible"
