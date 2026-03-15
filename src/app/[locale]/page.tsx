@@ -1,6 +1,9 @@
 
 import Hero from "@/components/Hero";
 import LoadoutSection from "@/components/LoadoutSection";
+import WebServicesSection from "@/components/WebServicesSection";
+import CreativeProcessSection from "@/components/CreativeProcessSection";
+import AboutMeSection from "@/components/AboutMeSection";
 import ProjectArcs from "@/components/ProjectArcs";
 import FeaturedCaseStudy from "@/components/FeaturedCaseStudy";
 import Timeline from "@/components/Timeline";
@@ -34,6 +37,9 @@ export default function Home({ params: { locale } }: HomeProps) {
 
         <Hero dict={dict} />
         <LoadoutSection dict={dict} />
+        <WebServicesSection dict={dict} />
+        <CreativeProcessSection dict={dict} />
+        <AboutMeSection dict={dict} />
         <ProjectArcs dict={dict} />
         <FeaturedCaseStudy dict={dict} />
         <Timeline dict={dict} />

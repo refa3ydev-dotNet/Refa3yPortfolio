@@ -36,8 +36,11 @@ const ar: Dictionary = {
     nav: [
         { id: "home", label: "ف 01 الرئيسية", href: "#home" },
         { id: "skills", label: "ف 02 المهارات", href: "#skills" },
-        { id: "projects", label: "ف 03 المشاريع", href: "#projects" },
-        { id: "experience", label: "ف 04 الخبرة", href: "#experience" },
+        { id: "services", label: "ف 03 الخدمات", href: "#services" },
+        { id: "projects", label: "ف 04 المشاريع", href: "#projects" },
+        { id: "process", label: "ف 05 العمليات", href: "#process" },
+        { id: "experience", label: "ف 06 الخبرة", href: "#experience" },
+        { id: "about", label: "ف 07 من أنا", href: "#about" },
     ],
 
     skills: {
@@ -56,6 +59,104 @@ const ar: Dictionary = {
                 items: ["Postman", "Docker", "Figma", "DSA"],
             },
         ],
+    },
+
+    // Web Services
+    webServices: {
+        sectionLabel: "// الخدمات",
+        subtitle: "ما يمكنني مساعدتك في بنائه (واقعي لمطور مبتدئ)",
+        note: "النطاق يعتمد على الجدول الزمني والمتطلبات",
+        cta: "لنناقش مشروعك",
+        services: [
+            {
+                title: "تطبيقات CRUD",
+                bestFor: "الأدوات الداخلية أو أنظمة الإدارة.",
+                includes: [
+                    "هيكلية جاهزة للمصادقة",
+                    "واجهات مستخدم مبنية على الأدوار",
+                    "التحقق من البيانات والمنطق",
+                    "صفحات واجهة مستخدم نظيفة",
+                ],
+                tools: ["ASP.NET MVC/Core", "SQL Server", "EF Core"],
+            },
+            {
+                title: "واجهات برمجة REST API",
+                bestFor: "تشغيل تطبيقات الهاتف أو الويب.",
+                includes: [
+                    "نهايات طرفية (Endpoints) نظيفة",
+                    "DTOs و AutoMapper",
+                    "تكامل EF Core",
+                    "أنماط الترقيم والفلترة",
+                ],
+                tools: [".NET 8", "SQL Server", "Postman"],
+            },
+            {
+                title: "تنفيذ واجهات المستخدم",
+                bestFor: "تحويل التصاميم إلى كود تفاعلي.",
+                includes: [
+                    "مكونات متجاوبة",
+                    "دعم الوضع الليلي",
+                    "نماذج سهلة الوصول",
+                    "مكتبة واجهة مستخدم قابلة لإعادة الاستخدام",
+                ],
+                tools: ["React", "TypeScript", "Tailwind CSS"],
+            },
+            {
+                title: "تحسين الأداء و SEO",
+                bestFor: "جعل موقعك مرئيًا وسريعًا.",
+                includes: [
+                    "بيانات Metadata ووسوم OG",
+                    "ملفات Sitemap و Robots.txt",
+                    "أساسيات Core Web Vitals",
+                    "تحسين الصور",
+                ],
+                tools: ["Next.js", "Vercel", "Lighthouse"],
+            },
+        ],
+    },
+
+    // Creative Process
+    creativeProcess: {
+        sectionLabel: "// العمليات",
+        steps: [
+            {
+                number: "01",
+                title: "الاكتشاف",
+                goal: "توضيح المتطلبات والأولويات",
+                outputs: ["قائمة الميزات + الحالات الاستثنائية", "مخطط هيكلي للموقع"],
+            },
+            {
+                number: "02",
+                title: "التخطيط",
+                goal: "الهيكلية + نموذج البيانات",
+                outputs: ["رسم توضيحي لجداول قاعدة البيانات", "هيكل المجلدات والنهايات الطرفية"],
+            },
+            {
+                number: "03",
+                title: "البناء",
+                goal: "التنفيذ التدريجي",
+                outputs: ["أجزاء ميزات تعمل", "اختبارات أساسية والتحقق من البيانات"],
+            },
+            {
+                number: "04",
+                title: "الصقل",
+                goal: "الجودة + النشر",
+                outputs: ["فحوصات الاستجابة", "مراجعة الأداء", "النشر عبر Vercel"],
+            },
+        ],
+    },
+
+    // About Me
+    aboutMe: {
+        sectionLabel: "// من أنا",
+        intro: "أنا مطور .NET مبتدئ أركز على بناء واجهات خلفية قوية وواجهات مستخدم نظيفة وعملية. أؤمن بكتابة كود قابل للصيانة واتباع الأنماط المعمارية المعترف بها.",
+        quickFacts: [
+            { label: "الموقع", value: "مصر" },
+            { label: "التقنيات", value: ".NET + SQL Server + React" },
+            { label: "التركيز", value: "العمارة النظيفة (Clean Architecture)" },
+            { label: "متاح لـ", value: "تدريب / أدوار جونيور" },
+        ],
+        currentlyBuilding: "أقوم حاليًا ببناء معرض أعمالي هذا وتحسين تطبيق الأفلام الخاص بي بميزات متقدمة.",
     },
 
     projects: [
