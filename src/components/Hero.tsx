@@ -4,7 +4,6 @@ import { m, useMotionValue, animate } from "framer-motion";
 import React from "react";
 import dynamic from "next/dynamic";
 import HolographicCard from "./HolographicCard";
-import SectionReveal from "./SectionReveal";
 
 // Dynamically import the 3D background to keep initial bundle light
 const CyberpunkGridBg = dynamic(() => import("./CyberpunkGridBg"), { ssr: false });
@@ -14,7 +13,6 @@ import { Dictionary } from "@/i18n/messages";
 import {
     staggerContainer,
     fadeUp,
-    fadeRight,
     stampIn,
 } from "./AnimeAnimations";
 
@@ -50,9 +48,6 @@ export default function Hero({ dict }: HeroProps) {
 
     const handleProjectsClick = () => {
         setIsLoadingProjects(true);
-        // Simulate delay or let next.js router handle it, but for effect we show state
-        // In a real app the router.push would happen. 
-        // Since scrollTo uses document.querySelector it's instant, but we can fake a "load"
         setTimeout(() => {
             const el = document.querySelector("#projects");
             el?.scrollIntoView({ behavior: "smooth" });
@@ -180,12 +175,7 @@ export default function Hero({ dict }: HeroProps) {
                         </m.div>
 
                         {/* ── Right: Character Card (5 cols) ─────────────── */}
-                        <m.div
-                            className="lg:col-span-5 flex justify-center lg:justify-end relative"
-                            variants={fadeRight}
-                            initial="hidden"
-                            animate="visible"
-                        >
+                        <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
                             <HolographicCard dict={dict} />
 
                             {/* Vertical Japanese katakana — decorative */}
@@ -207,7 +197,7 @@ export default function Hero({ dict }: HeroProps) {
                                     </m.span>
                                 ))}
                             </m.div>
-                        </m.div>
+                        </div>
                     </div>
                 </div>
             </div>

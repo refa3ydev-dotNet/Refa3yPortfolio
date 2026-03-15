@@ -6,7 +6,7 @@ import { Plane } from "@react-three/drei";
 import * as THREE from "three";
 
 function AnimatedGrid() {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<THREE.Group>(null);
   const { mouse } = useThree();
 
   // Animation logic
