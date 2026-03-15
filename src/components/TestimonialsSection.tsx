@@ -52,10 +52,12 @@ function TestimonialCard({ src, index }: { src: string, index: number }) {
                     transition: { duration: 0.2 }
                 }}
             >
-                <div className="relative aspect-auto">
-                    <img
+                <div className="relative w-full">
+                    <Image
                         src={src}
                         alt={`Testimonial ${index + 1}`}
+                        width={500}
+                        height={400}
                         className="w-full h-auto grayscale-[0.7] contrast-[1.1] sepia-[0.2] group-hover:grayscale-0 group-hover:sepia-0 transition-all duration-500"
                         loading="lazy"
                     />
@@ -217,14 +219,21 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
 
                             {/* Image Workspace */}
                             <div className="overflow-auto custom-scrollbar bg-[#F0F0F0] dark:bg-[#0A0C12] p-2 md:p-4 flex items-start justify-center">
-                                <motion.img
-                                    src={selectedImage}
-                                    alt="Testimonial Evidence"
-                                    className="max-w-full h-auto shadow-2xl border border-ink/5 block"
+                                <motion.div
                                     initial={{ opacity: 0, scale: 0.98 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: 0.2 }}
-                                />
+                                    className="relative shadow-2xl border border-ink/5 block"
+                                >
+                                    <Image
+                                        src={selectedImage}
+                                        alt="Testimonial Evidence"
+                                        width={1200}
+                                        height={1600}
+                                        unoptimized
+                                        className="max-w-full h-auto block"
+                                    />
+                                </motion.div>
                             </div>
                             
                             {/* Footer / Status Bar */}
