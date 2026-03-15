@@ -74,8 +74,8 @@ export default function HeroInteractiveBackground({ mouseX, mouseY }: HeroIntera
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
-            {/* 1. Base Layer */}
-            <div className="absolute inset-0 bg-paper transition-colors duration-300" />
+            {/* 1. Base Layer - Transparent to show 3D background */}
+            <div className="absolute inset-0 bg-transparent transition-colors duration-300" />
 
             {/* 2. Speedlines (Opposite Movement, Deepest) */}
             <m.div
