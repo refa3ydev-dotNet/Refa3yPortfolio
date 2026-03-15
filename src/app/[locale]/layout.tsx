@@ -4,7 +4,7 @@ import InitialLoader from "@/components/InitialLoader";
 import ThemeProvider from "@/components/ThemeProvider";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { SITE_URL } from "@/lib/site";
