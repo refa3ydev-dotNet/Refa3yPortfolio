@@ -328,7 +328,7 @@ export const profile = {
         subtext: "Let's collaborate to build something legendary.",
         availability: "Open for internships / junior roles",
         email: "refa3y.dev@gmail.com", // Replace with your email
-        linkedin: "https://www.linkedin.com/in/omar-refaey-b20081253/", // Replace
+        linkedin: "https://www.linkedin.com/in/omar-ayman-refay/", // Replace
         github: "https://github.com/refa3ydev-dotNet", // Replace
     },
 

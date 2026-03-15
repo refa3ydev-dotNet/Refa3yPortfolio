@@ -48,7 +48,7 @@ export default function WebServicesSection({ dict }: WebServicesSectionProps) {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
                 >
-                    {webServices.services.map((service, idx) => (
+                    {webServices.services.map((service) => (
                         <motion.div
                             key={service.title}
                             className="manga-frame p-6 flex flex-col h-full dark:bg-[#131724] dark:border-[rgba(242,239,232,0.22)]"

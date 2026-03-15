@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
     staggerContainer,
     fadeUp,
