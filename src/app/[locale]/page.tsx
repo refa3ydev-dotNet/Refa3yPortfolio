@@ -8,16 +8,16 @@ import { messages } from "@/i18n/messages";
 // (ScrollIntro and Hero are critical for LCP and initial interaction)
 
 // Dynamically import below-the-fold components
-const LoadoutSection = dynamic(() => import("@/components/LoadoutSection"));
-const WebServicesSection = dynamic(() => import("@/components/WebServicesSection"));
-const CreativeProcessSection = dynamic(() => import("@/components/CreativeProcessSection"));
-const AboutMeSection = dynamic(() => import("@/components/AboutMeSection"));
-const ProjectArcs = dynamic(() => import("@/components/ProjectArcs"));
-const FeaturedCaseStudy = dynamic(() => import("@/components/FeaturedCaseStudy"));
-const Timeline = dynamic(() => import("@/components/Timeline"));
-const Education = dynamic(() => import("@/components/Education"));
-const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"));
-const FooterCTA = dynamic(() => import("@/components/FooterCTA"));
+const LoadoutSection = dynamic(() => import("@/components/LoadoutSection"), { ssr: true });
+const WebServicesSection = dynamic(() => import("@/components/WebServicesSection"), { ssr: true });
+const CreativeProcessSection = dynamic(() => import("@/components/CreativeProcessSection"), { ssr: true });
+const AboutMeSection = dynamic(() => import("@/components/AboutMeSection"), { ssr: true });
+const ProjectArcs = dynamic(() => import("@/components/ProjectArcs"), { ssr: true });
+const FeaturedCaseStudy = dynamic(() => import("@/components/FeaturedCaseStudy"), { ssr: true });
+const Timeline = dynamic(() => import("@/components/Timeline"), { ssr: true });
+const Education = dynamic(() => import("@/components/Education"), { ssr: true });
+const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"), { ssr: true });
+const FooterCTA = dynamic(() => import("@/components/FooterCTA"), { ssr: true });
 
 interface HomeProps {
   params: { locale: Locale };

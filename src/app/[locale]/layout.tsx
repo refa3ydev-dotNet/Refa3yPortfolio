@@ -5,9 +5,9 @@ import ThemeProvider from "@/components/ThemeProvider";
 import AnimationProvider from "@/components/AnimationProvider";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import dynamic from "next/dynamic";
+
+const DeferredAnalytics = dynamic(() => import("@/components/DeferredAnalytics"), { ssr: false });
 
 import { SITE_URL } from "@/lib/site";
 import { locales, Locale } from "@/i18n/config";
@@ -164,9 +164,7 @@ export default function RootLayout({
             <InitialLoader />
             <Navbar dict={dict} locale={locale} />
             {children}
-            <Analytics />
-            <SpeedInsights />
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+            <DeferredAnalytics />
           </AnimationProvider>
         </ThemeProvider>
       </body>
