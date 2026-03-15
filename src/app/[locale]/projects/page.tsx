@@ -1,7 +1,7 @@
 "use client";
 
 import FooterCTA from "@/components/FooterCTA";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import {
     staggerContainer,
@@ -26,29 +26,29 @@ export default function ProjectsPage({ params: { locale } }: ProjectsPageProps) 
         <>
             <main className="min-h-screen bg-paper pt-24 pb-20">
                 <div className="mx-auto max-w-6xl px-6">
-                    <motion.div
+                    <m.div
                         className="text-center mb-16 space-y-4"
                         initial="hidden"
                         animate="visible"
                         variants={staggerContainer}
                     >
-                        <motion.h1
+                        <m.h1
                             className="text-4xl sm:text-5xl md:text-6xl font-black uppercase text-ink"
                             variants={scaleUp}
                         >
                             {dict.projectsPage.heading}
-                        </motion.h1>
-                        <motion.p
+                        </m.h1>
+                        <m.p
                             className="text-ink-light max-w-2xl mx-auto"
                             variants={fadeUp}
                         >
                             {dict.projectsPage.subtext}
-                        </motion.p>
-                    </motion.div>
+                        </m.p>
+                    </m.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {dict.projects.map((project: Project, index: number) => (
-                            <motion.article
+                            <m.article
                                 key={project.episode + index}
                                 className="manga-frame overflow-hidden group flex flex-col h-full bg-paper-light border border-ink/10 hover:border-ink transition-colors duration-300 cursor-pointer"
                                 initial={{ opacity: 0, y: 20 }}
@@ -95,7 +95,7 @@ export default function ProjectsPage({ params: { locale } }: ProjectsPageProps) 
                                         ))}
                                     </div>
                                 </div>
-                            </motion.article>
+                            </m.article>
                         ))}
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { m, AnimatePresence, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
@@ -65,7 +65,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
             {isOpen && project && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
                     {/* Backdrop */}
-                    <motion.div
+                    <m.div
                         className="absolute inset-0 bg-paper-dark/90 backdrop-blur-sm"
                         variants={overlayVariants}
                         initial="hidden"
@@ -75,7 +75,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
                     />
 
                     {/* Modal Container */}
-                    <motion.div
+                    <m.div
                         className="relative w-full max-w-5xl bg-paper border-2 border-ink shadow-2xl flex flex-col max-h-[90vh] overflow-hidden rounded-sm"
                         variants={modalVariants}
                         initial="hidden"
@@ -178,7 +178,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }: Proje
 
                             </div>
                         </div>
-                    </motion.div>
+                    </m.div>
                 </div>
             )}
         </AnimatePresence>,

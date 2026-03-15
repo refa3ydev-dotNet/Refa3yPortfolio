@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { staggerContainer, fadeUp, scaleUp } from "./AnimeAnimations";
@@ -21,7 +21,7 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
     return (
         <SectionReveal id="contact" className="py-20 bg-[#111111] text-white relative overflow-hidden">
             {/* Background decorative cross-hatch */}
-            <motion.div
+            <m.div
                 className="absolute inset-0 pointer-events-none"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 0.03 }}
@@ -40,9 +40,9 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                     </pattern>
                     <rect width="100%" height="100%" fill="url(#crosshatch)" />
                 </svg>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
                 className="mx-auto max-w-6xl px-6 text-center space-y-6 relative"
                 variants={staggerContainer}
                 initial="hidden"
@@ -50,12 +50,12 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                 viewport={{ once: true, amount: 0.3 }}
             >
                 {/* Heading — word by word stagger */}
-                <motion.h2
+                <m.h2
                     className="text-4xl sm:text-5xl md:text-6xl font-black uppercase leading-tight flex flex-wrap justify-center gap-x-4"
                     variants={fadeUp}
                 >
                     {headingWords.map((word, i) => (
-                        <motion.span
+                        <m.span
                             key={i}
                             initial={{ opacity: 0, y: 40, rotateX: -60 }}
                             whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -68,31 +68,31 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                             className={word === "ARC?" || word === "التالي؟" ? "text-blood" : ""}
                         >
                             {word}
-                        </motion.span>
+                        </m.span>
                     ))}
-                </motion.h2>
+                </m.h2>
 
-                <motion.p
+                <m.p
                     className="text-base text-white/70 max-w-md mx-auto"
                     variants={fadeUp}
                 >
                     {contact.subtext}
-                </motion.p>
+                </m.p>
 
                 {/* Availability chip — stamp in */}
-                <motion.span
+                <m.span
                     className="inline-block border border-white/30 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-white/80"
                     variants={scaleUp}
                 >
                     {contact.availability}
-                </motion.span>
+                </m.span>
 
                 {/* CTA buttons — staggered pop in */}
-                <motion.div
+                <m.div
                     className="flex flex-wrap justify-center gap-4 pt-4"
                     variants={fadeUp}
                 >
-                    <motion.a
+                    <m.a
                         href={`mailto:${contact.email}`}
                         className="inline-flex items-center gap-2 px-6 py-3 bg-blood text-white font-bold text-sm uppercase tracking-wide border-2 border-white/20"
                         whileHover={{
@@ -103,8 +103,8 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                         whileTap={{ scale: 0.97 }}
                     >
                         {dict.buttonLabels.emailMe}
-                    </motion.a>
-                    <motion.a
+                    </m.a>
+                    <m.a
                         href={contact.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -117,8 +117,8 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                         whileTap={{ scale: 0.97 }}
                     >
                         {dict.buttonLabels.linkedin}
-                    </motion.a>
-                    <motion.a
+                    </m.a>
+                    <m.a
                         href={contact.github}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -131,12 +131,12 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                         whileTap={{ scale: 0.97 }}
                     >
                         {dict.buttonLabels.repo}
-                    </motion.a>
-                </motion.div>
-            </motion.div>
+                    </m.a>
+                </m.div>
+            </m.div>
 
             {/* Footer bottom — fade in */}
-            <motion.div
+            <m.div
                 className="mt-16 border-t border-white/10 pt-6 text-center relative"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -144,7 +144,7 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                 transition={{ delay: 0.6 }}
             >
                 <div className="flex items-center justify-center gap-2 text-xs text-white/40">
-                    <motion.span
+                    <m.span
                         className="inline-block h-2 w-2 bg-blood"
                         animate={{ scale: [1, 1.3, 1] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -153,7 +153,7 @@ export default function FooterCTA({ dict }: FooterCTAProps) {
                         Designed & Built by Omar Ayman (عمر ايمن)
                     </span>
                 </div>
-            </motion.div>
+            </m.div>
         </SectionReveal>
     );
 }

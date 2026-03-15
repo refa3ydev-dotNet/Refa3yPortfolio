@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import "../globals.css";
 import InitialLoader from "@/components/InitialLoader";
 import ThemeProvider from "@/components/ThemeProvider";
+import AnimationProvider from "@/components/AnimationProvider";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { SITE_URL } from "@/lib/site";
 import { locales, Locale } from "@/i18n/config";
@@ -164,11 +166,14 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-paper text-ink antialiased`}>
         <ThemeProvider>
-          <InitialLoader />
-          <Navbar dict={dict} locale={locale} />
-          {children}
-          <Analytics />
-          <SpeedInsights />
+          <AnimationProvider>
+            <InitialLoader />
+            <Navbar dict={dict} locale={locale} />
+            {children}
+            <Analytics />
+            <SpeedInsights />
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+          </AnimationProvider>
         </ThemeProvider>
       </body>
     </html>

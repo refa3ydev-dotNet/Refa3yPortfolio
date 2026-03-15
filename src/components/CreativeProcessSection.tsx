@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import {
@@ -24,7 +24,7 @@ export default function CreativeProcessSection({ dict }: CreativeProcessSectionP
 
             <div className="mx-auto max-w-6xl px-6 relative">
                 {/* Divider */}
-                <motion.div
+                <m.div
                     className="section-divider mb-12"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
@@ -34,7 +34,7 @@ export default function CreativeProcessSection({ dict }: CreativeProcessSectionP
                 />
 
                 {/* Heading */}
-                <motion.h2
+                <m.h2
                     className="section-heading text-start mb-14 uppercase"
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -42,10 +42,10 @@ export default function CreativeProcessSection({ dict }: CreativeProcessSectionP
                     transition={{ duration: 0.5 }}
                 >
                     {creativeProcess.sectionLabel.replace("// ", "")}
-                </motion.h2>
+                </m.h2>
 
                 {/* Steps as Manga Panels */}
-                <motion.div
+                <m.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
                     variants={staggerContainer}
                     initial="hidden"
@@ -53,7 +53,7 @@ export default function CreativeProcessSection({ dict }: CreativeProcessSectionP
                     viewport={{ once: true, amount: 0.1 }}
                 >
                     {creativeProcess.steps.map((step, idx) => (
-                        <motion.div
+                        <m.div
                             key={step.number}
                             className={`manga-frame p-6 bg-paper dark:bg-[#131724] dark:border-[rgba(242,239,232,0.22)] relative overflow-hidden group
                                 ${idx % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'} hover:rotate-0 transition-transform duration-300`}
@@ -94,9 +94,9 @@ export default function CreativeProcessSection({ dict }: CreativeProcessSectionP
 
                             {/* Decorative manga accent */}
                             <div className="absolute bottom-0 left-0 w-full h-1 bg-ink/5 dark:bg-white/5 group-hover:bg-blood transition-colors" />
-                        </motion.div>
+                        </m.div>
                     ))}
-                </motion.div>
+                </m.div>
 
                 {/* Decorative Speed Lines */}
                 <HorizontalSpeedLines className="bottom-0 right-0 w-1/3 h-20 opacity-20" />

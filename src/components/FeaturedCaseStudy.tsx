@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { staggerContainer, fadeUp } from "./AnimeAnimations";
@@ -25,7 +25,7 @@ export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
     return (
         <SectionReveal className="py-12">
             <div className="mx-auto max-w-6xl px-6">
-                <motion.h3
+                <m.h3
                     className="text-sm font-black tracking-wider uppercase mb-6"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -33,9 +33,9 @@ export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
                     transition={{ duration: 0.4 }}
                 >
                     {caseStudy.heading}
-                </motion.h3>
+                </m.h3>
 
-                <motion.div
+                <m.div
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
                     variants={staggerContainer}
                     initial="hidden"
@@ -43,7 +43,7 @@ export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
                     viewport={{ once: true, amount: 0.2 }}
                 >
                     {columns.map((col, i) => (
-                        <motion.div
+                        <m.div
                             key={col.label}
                             className="manga-frame-static p-4 space-y-2"
                             variants={fadeUp}
@@ -53,7 +53,7 @@ export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
                                 transition: { duration: 0.2 },
                             }}
                         >
-                            <motion.h4
+                            <m.h4
                                 className="text-xs font-black tracking-widest uppercase text-blood"
                                 initial={{ opacity: 0, x: -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
@@ -61,7 +61,7 @@ export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
                                 transition={{ delay: 0.2 + i * 0.1 }}
                             >
                                 {col.label}
-                            </motion.h4>
+                            </m.h4>
 
                             {col.key === "ARCHITECTURE" ? (
                                 <div className="space-y-2">
@@ -69,7 +69,7 @@ export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
                                         {col.content}
                                     </p>
                                     {/* Simple 3-tier diagram SVG — animated draw-in */}
-                                    <motion.svg
+                                    <m.svg
                                         viewBox="0 0 160 100"
                                         className="w-full max-w-[140px] mx-auto"
                                         aria-label="3-Tier Architecture diagram"
@@ -89,16 +89,16 @@ export default function FeaturedCaseStudy({ dict }: FeaturedCaseStudyProps) {
                                         <polygon points="76,73 84,73 80,79" fill="currentColor" />
                                         <rect x="20" y="79" width="120" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" />
                                         <text x="80" y="94" textAnchor="middle" fontSize="8" fontWeight="700" fill="currentColor">{caseStudy.diagram.dataAccess}</text>
-                                    </motion.svg>
+                                    </m.svg>
                                 </div>
                             ) : (
                                 <p className="text-xs text-ink-light leading-relaxed">
                                     {col.content}
                                 </p>
                             )}
-                        </motion.div>
+                        </m.div>
                     ))}
-                </motion.div>
+                </m.div>
             </div>
         </SectionReveal>
     );

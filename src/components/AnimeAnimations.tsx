@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { m, Variants } from "framer-motion";
 
 /* ===================================================
    ANIME ANIMATION VARIANTS
@@ -133,7 +133,7 @@ export const floatingCard: Variants = {
 /** Speed lines component — decorative anime burst */
 export function SpeedLines({ className = "" }: { className?: string }) {
     return (
-        <motion.div
+        <m.div
             className={`absolute pointer-events-none overflow-hidden ${className}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.06 }}
@@ -161,14 +161,14 @@ export function SpeedLines({ className = "" }: { className?: string }) {
                     );
                 })}
             </svg>
-        </motion.div>
+        </m.div>
     );
 }
 
 /** Horizontal manga speed lines */
 export function HorizontalSpeedLines({ className = "" }: { className?: string }) {
     return (
-        <motion.div
+        <m.div
             className={`absolute pointer-events-none ${className}`}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 0.04, x: 0 }}
@@ -189,7 +189,7 @@ export function HorizontalSpeedLines({ className = "" }: { className?: string })
                     />
                 ))}
             </svg>
-        </motion.div>
+        </m.div>
     );
 }
 
@@ -202,7 +202,7 @@ export function InkDot({
     delay?: number;
 }) {
     return (
-        <motion.span
+        <m.span
             className={`inline-block rounded-full bg-ink ${className}`}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}

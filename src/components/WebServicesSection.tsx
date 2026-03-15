@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import {
@@ -19,7 +19,7 @@ export default function WebServicesSection({ dict }: WebServicesSectionProps) {
         <SectionReveal id="services" className="py-20 bg-paper dark:bg-[#0F111A]">
             <div className="mx-auto max-w-6xl px-6">
                 {/* Divider */}
-                <motion.div
+                <m.div
                     className="section-divider mb-12"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
@@ -29,7 +29,7 @@ export default function WebServicesSection({ dict }: WebServicesSectionProps) {
                 />
 
                 {/* Heading */}
-                <motion.div
+                <m.div
                     className="flex flex-col md:flex-row md:items-baseline gap-4 mb-12"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -38,10 +38,10 @@ export default function WebServicesSection({ dict }: WebServicesSectionProps) {
                 >
                     <h2 className="section-heading uppercase">{webServices.sectionLabel.replace("// ", "")}</h2>
                     <span className="section-label">{webServices.subtitle}</span>
-                </motion.div>
+                </m.div>
 
                 {/* Service Cards */}
-                <motion.div
+                <m.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
                     variants={staggerContainer}
                     initial="hidden"
@@ -49,7 +49,7 @@ export default function WebServicesSection({ dict }: WebServicesSectionProps) {
                     viewport={{ once: true, amount: 0.2 }}
                 >
                     {webServices.services.map((service) => (
-                        <motion.div
+                        <m.div
                             key={service.title}
                             className="manga-frame p-6 flex flex-col h-full dark:bg-[#131724] dark:border-[rgba(242,239,232,0.22)]"
                             variants={fadeUp}
@@ -82,12 +82,12 @@ export default function WebServicesSection({ dict }: WebServicesSectionProps) {
                                     </span>
                                 ))}
                             </div>
-                        </motion.div>
+                        </m.div>
                     ))}
-                </motion.div>
+                </m.div>
 
                 {/* Footer Note & CTA */}
-                <motion.div
+                <m.div
                     className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 manga-frame border-dashed dark:bg-[#131724]"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -98,15 +98,15 @@ export default function WebServicesSection({ dict }: WebServicesSectionProps) {
                         * {webServices.note}
                     </p>
                     <a href="#contact" className="w-full md:w-auto">
-                        <motion.button
+                        <m.button
                             className="w-full md:w-auto px-8 py-3 bg-ink text-paper dark:bg-blood dark:text-white font-black uppercase tracking-widest text-sm hover:bg-blood transition-colors"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             {webServices.cta}
-                        </motion.button>
+                        </m.button>
                     </a>
-                </motion.div>
+                </m.div>
             </div>
         </SectionReveal>
     );

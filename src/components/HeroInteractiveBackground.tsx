@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionValue, motion, useTransform, useSpring } from "framer-motion";
+import { MotionValue, m, useTransform, useSpring } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 
 interface HeroInteractiveBackgroundProps {
@@ -78,7 +78,7 @@ export default function HeroInteractiveBackground({ mouseX, mouseY }: HeroIntera
             <div className="absolute inset-0 bg-paper transition-colors duration-300" />
 
             {/* 2. Speedlines (Opposite Movement, Deepest) */}
-            <motion.div
+            <m.div
                 className="absolute inset-[-40px] mix-blend-soft-light"
                 style={{ x: xLines, y: yLines, opacity: linesOpacity }}
             >
@@ -86,10 +86,10 @@ export default function HeroInteractiveBackground({ mouseX, mouseY }: HeroIntera
                 <div className="w-full h-full" style={{
                     backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, ${linesColor} 10px, ${linesColor} 11px)`,
                 }} />
-            </motion.div>
+            </m.div>
 
             {/* 3. Guide Lines (Mid Layer - Parallax + Idle Drift) */}
-            <motion.div
+            <m.div
                 className="absolute inset-[-20px]"
                 style={{ x: xGuide, y: yGuide, opacity: guideOpacity }}
                 animate={{ y: ["0px", "-15px", "0px"] }}
@@ -106,10 +106,10 @@ export default function HeroInteractiveBackground({ mouseX, mouseY }: HeroIntera
                         }}
                     />
                 ))}
-            </motion.div>
+            </m.div>
 
             {/* 4. Halftone Dots (Mid Layer) */}
-            <motion.div
+            <m.div
                 className="absolute inset-[-20px]"
                 style={{ x: xDots, y: yDots }}
             >
@@ -119,10 +119,10 @@ export default function HeroInteractiveBackground({ mouseX, mouseY }: HeroIntera
                     </pattern>
                     <rect width="100%" height="100%" fill="url(#halftone)" />
                 </svg>
-            </motion.div>
+            </m.div>
 
             {/* 5. Ink Grain / Noise (Static CSS Replacement) */}
-            <motion.div
+            <m.div
                 className="absolute inset-[-30px] opacity-10 mix-blend-overlay"
                 style={{ x: xGrain, y: yGrain }}
             >
@@ -131,10 +131,10 @@ export default function HeroInteractiveBackground({ mouseX, mouseY }: HeroIntera
                     backgroundSize: "4px 4px",
                     filter: isDark ? "invert(1)" : "none",
                 }} />
-            </motion.div>
+            </m.div>
 
             {/* 6. Spotlight (Overlay) */}
-            <motion.div
+            <m.div
                 className="absolute w-[80rem] h-[80rem] -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-soft-light"
                 style={{
                     left: spotlightLeft,

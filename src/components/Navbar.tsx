@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { m, useScroll, useMotionValueEvent } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "./ThemeProvider";
 import { Dictionary } from "@/i18n/messages";
@@ -87,7 +87,7 @@ export default function Navbar({ dict, locale }: NavbarProps) {
     };
 
     return (
-        <motion.header
+        <m.header
             ref={navRef}
             initial={{ y: -100 }}
             animate={{ y: isVisible ? 0 : -100 }}
@@ -166,7 +166,7 @@ export default function Navbar({ dict, locale }: NavbarProps) {
                             >
                                 {item.label}
                                 {active === item.id && (
-                                    <motion.span
+                                    <m.span
                                         layoutId="nav-underline"
                                         className="absolute -bottom-1 left-0 right-0 h-[2px] bg-blood"
                                         transition={{ type: "spring", stiffness: 400, damping: 30 }}
@@ -284,7 +284,7 @@ export default function Navbar({ dict, locale }: NavbarProps) {
             {/* Mobile menu */}
             {
                 mobileOpen && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="md:hidden bg-paper border-b-2 border-ink px-6 pb-6"
@@ -312,9 +312,9 @@ export default function Navbar({ dict, locale }: NavbarProps) {
                                 </button>
                             </li>
                         </ul>
-                    </motion.div>
+                    </m.div>
                 )
             }
-        </motion.header >
+        </m.header >
     );
 }

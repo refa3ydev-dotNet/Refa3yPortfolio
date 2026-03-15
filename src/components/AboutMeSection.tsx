@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import {
@@ -54,7 +54,7 @@ export default function AboutMeSection({ dict }: AboutMeSectionProps) {
         <SectionReveal id="about" className="py-24 dark:bg-[#0F111A]">
             <div className="mx-auto max-w-4xl px-6">
                 {/* Heading */}
-                <motion.div
+                <m.div
                     className="flex items-center gap-6 mb-12"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -62,7 +62,7 @@ export default function AboutMeSection({ dict }: AboutMeSectionProps) {
                 >
                     <h2 className="section-heading uppercase m-0">{aboutMe.sectionLabel.replace("// ", "")}</h2>
                     <div className="h-0.5 bg-ink/10 dark:bg-white/10 flex-grow" />
-                </motion.div>
+                </m.div>
 
                 <div className="manga-frame p-8 md:p-12 relative overflow-hidden dark:bg-[#131724] dark:border-[rgba(242,239,232,0.22)]">
                     {/* Character Sprite Placeholder / Decorative Element */}
@@ -71,7 +71,7 @@ export default function AboutMeSection({ dict }: AboutMeSectionProps) {
                     </div>
 
                     <div className="relative z-10 max-w-2xl">
-                        <motion.p 
+                        <m.p 
                             className="text-xl md:text-2xl font-bold leading-tight mb-8"
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -79,10 +79,10 @@ export default function AboutMeSection({ dict }: AboutMeSectionProps) {
                             transition={{ delay: 0.2 }}
                         >
                             {aboutMe.intro}
-                        </motion.p>
+                        </m.p>
 
                         {/* Quick Facts Chips */}
-                        <motion.div 
+                        <m.div 
                             className="flex flex-wrap gap-3 mb-10"
                             variants={staggerContainer}
                             initial="hidden"
@@ -90,19 +90,19 @@ export default function AboutMeSection({ dict }: AboutMeSectionProps) {
                             viewport={{ once: true }}
                         >
                             {aboutMe.quickFacts.map((fact) => (
-                                <motion.div 
+                                <m.div 
                                     key={fact.label}
                                     className="px-4 py-2 bg-paper-dark dark:bg-[#1C2132] border border-ink/10 dark:border-white/10 rounded-sm"
                                     variants={fadeUp}
                                 >
                                     <span className="text-[0.6rem] block font-black uppercase text-blood tracking-wider mb-0.5">{fact.label}</span>
                                     <span className="text-sm font-bold uppercase">{fact.value}</span>
-                                </motion.div>
+                                </m.div>
                             ))}
-                        </motion.div>
+                        </m.div>
 
                         {/* Currently Building */}
-                        <motion.div 
+                        <m.div 
                             className="p-5 border-l-4 border-blood bg-blood/5 mb-12 dark:bg-blood/10"
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -111,12 +111,12 @@ export default function AboutMeSection({ dict }: AboutMeSectionProps) {
                         >
                             <span className="text-[0.6rem] block font-black uppercase text-blood mb-1 tracking-widest">Active Task</span>
                             <p className="text-sm font-medium leading-relaxed italic opacity-80">{aboutMe.currentlyBuilding}</p>
-                        </motion.div>
+                        </m.div>
 
                         {/* Social/Action Links */}
                         <div className="flex flex-wrap gap-4">
                             {links.map((link, idx) => (
-                                <motion.a
+                                <m.a
                                     key={link.label}
                                     href={link.href}
                                     target="_blank"
@@ -134,7 +134,7 @@ export default function AboutMeSection({ dict }: AboutMeSectionProps) {
                                 >
                                     {link.icon}
                                     {link.label}
-                                </motion.a>
+                                </m.a>
                             ))}
                         </div>
                     </div>

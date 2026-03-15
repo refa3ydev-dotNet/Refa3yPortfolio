@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { staggerContainer, fadeUp } from "./AnimeAnimations";
@@ -17,7 +17,7 @@ export default function Timeline({ dict }: TimelineProps) {
         <SectionReveal id="experience" className="py-20">
             <div className="mx-auto max-w-6xl px-6">
                 {/* Divider — animated draw from left */}
-                <motion.div
+                <m.div
                     className="section-divider mb-12"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
@@ -27,7 +27,7 @@ export default function Timeline({ dict }: TimelineProps) {
                 />
 
                 {/* Heading — slide from left with bounce */}
-                <motion.h2
+                <m.h2
                     className="section-heading mb-14"
                     initial={{ opacity: 0, x: -40 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -35,12 +35,12 @@ export default function Timeline({ dict }: TimelineProps) {
                     transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
                 >
                     {dict.sectionHeadings.experience}
-                </motion.h2>
+                </m.h2>
 
                 {/* Timeline — animated vertical line + staggered cards */}
                 <div className="relative pl-8">
                     {/* Animated timeline line */}
-                    <motion.div
+                    <m.div
                         className="absolute left-0 top-0 w-[2px] bg-ink"
                         initial={{ scaleY: 0 }}
                         whileInView={{ scaleY: 1 }}
@@ -49,7 +49,7 @@ export default function Timeline({ dict }: TimelineProps) {
                         style={{ transformOrigin: "top", height: "100%" }}
                     />
 
-                    <motion.div
+                    <m.div
                         className="space-y-10"
                         variants={staggerContainer}
                         initial="hidden"
@@ -57,9 +57,9 @@ export default function Timeline({ dict }: TimelineProps) {
                         viewport={{ once: true, amount: 0.1 }}
                     >
                         {dict.timeline.map((item, i) => (
-                            <motion.div key={i} className="relative" variants={fadeUp}>
+                            <m.div key={i} className="relative" variants={fadeUp}>
                                 {/* Timeline dot — pops in */}
-                                <motion.span
+                                <m.span
                                     className="absolute -left-[calc(2rem+5px)] top-1 h-3 w-3 border-2 border-ink bg-blood"
                                     initial={{ scale: 0 }}
                                     whileInView={{ scale: 1 }}
@@ -72,7 +72,7 @@ export default function Timeline({ dict }: TimelineProps) {
                                     }}
                                 />
 
-                                <motion.div
+                                <m.div
                                     className="manga-frame p-5"
                                     whileHover={{
                                         y: -3,
@@ -94,7 +94,7 @@ export default function Timeline({ dict }: TimelineProps) {
                                     </p>
                                     <ul className="space-y-1.5">
                                         {item.bullets.map((b, j) => (
-                                            <motion.li
+                                            <m.li
                                                 key={j}
                                                 className="text-sm text-ink-light leading-relaxed flex gap-2"
                                                 initial={{ opacity: 0, x: -10 }}
@@ -104,13 +104,13 @@ export default function Timeline({ dict }: TimelineProps) {
                                             >
                                                 <span className="text-blood mt-0.5 shrink-0">▸</span>
                                                 {b}
-                                            </motion.li>
+                                            </m.li>
                                         ))}
                                     </ul>
-                                </motion.div>
-                            </motion.div>
+                                </m.div>
+                            </m.div>
                         ))}
-                    </motion.div>
+                    </m.div>
                 </div>
             </div>
         </SectionReveal>

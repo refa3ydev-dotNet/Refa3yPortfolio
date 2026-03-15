@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import {
@@ -26,7 +26,7 @@ export default function LoadoutSection({ dict }: LoadoutSectionProps) {
         <SectionReveal id="skills" className="py-20">
             <div className="mx-auto max-w-6xl px-6">
                 {/* Divider — animated draw-in */}
-                <motion.div
+                <m.div
                     className="section-divider mb-12"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
@@ -36,7 +36,7 @@ export default function LoadoutSection({ dict }: LoadoutSectionProps) {
                 />
 
                 {/* Heading — animated */}
-                <motion.div
+                <m.div
                     className="flex items-baseline gap-4 mb-12"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -45,10 +45,10 @@ export default function LoadoutSection({ dict }: LoadoutSectionProps) {
                 >
                     <h2 className="section-heading">{dict.sectionHeadings.techLoadout}</h2>
                     <span className="section-label">{skills.sectionLabel}</span>
-                </motion.div>
+                </m.div>
 
                 {/* Three column cards — staggered entrance */}
-                <motion.div
+                <m.div
                     className="grid grid-cols-1 md:grid-cols-3 gap-6"
                     variants={staggerContainer}
                     initial="hidden"
@@ -56,7 +56,7 @@ export default function LoadoutSection({ dict }: LoadoutSectionProps) {
                     viewport={{ once: true, amount: 0.2 }}
                 >
                     {skills.columns.map((col, colIdx) => (
-                        <motion.div
+                        <m.div
                             key={col.title}
                             className="manga-frame p-6 relative overflow-hidden dark:bg-[#131724] dark:border-[rgba(242,239,232,0.22)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.45)] dark:ring-1 dark:ring-inset dark:ring-[rgba(242,239,232,0.10)]"
                             variants={fadeUp}
@@ -77,7 +77,7 @@ export default function LoadoutSection({ dict }: LoadoutSectionProps) {
                                         </div>
                                         {/* Decorative red progress line — animated draw */}
                                         <div className="h-1 bg-paper-dark border border-ink/20 dark:bg-[rgba(242,239,232,0.20)] dark:border-[rgba(242,239,232,0.28)] overflow-hidden relative">
-                                            <motion.div
+                                            <m.div
                                                 className="h-full bg-blood relative"
                                                 initial={{ scaleX: 0 }}
                                                 whileInView={{ scaleX: 1 }}
@@ -94,14 +94,14 @@ export default function LoadoutSection({ dict }: LoadoutSectionProps) {
                                             >
                                                 {/* Premium highlight line on top of fill */}
                                                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-[rgba(242,239,232,0.12)]" />
-                                            </motion.div>
+                                            </m.div>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
-                        </motion.div>
+                        </m.div>
                     ))}
-                </motion.div>
+                </m.div>
             </div>
         </SectionReveal>
     );

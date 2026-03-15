@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { clipRevealUp, fadeUp, fastStagger } from "./AnimeAnimations";
 import { Dictionary } from "@/i18n/messages";
 
@@ -28,7 +28,7 @@ export default function CharacterCard({
     const isPhoto = portraitMode === "photo";
 
     return (
-        <motion.div
+        <m.div
             className="w-full max-w-[340px] border-2 border-ink bg-paper relative"
             style={{ boxShadow: "var(--shadow-manga)" }}
             initial={{ opacity: 0, y: 30, rotate: 1 }}
@@ -41,7 +41,7 @@ export default function CharacterCard({
             }}
         >
             {/* Avatar image — fills card top */}
-            <motion.div
+            <m.div
                 className="relative w-full aspect-[3/4] bg-paper-dark overflow-hidden"
                 variants={clipRevealUp}
                 initial="hidden"
@@ -85,7 +85,7 @@ export default function CharacterCard({
                 )}
 
                 {/* Info strip at bottom of image — graduation info only */}
-                <motion.div
+                <m.div
                     className="absolute bottom-0 left-0 right-0 px-4 py-2.5"
                     style={{ background: "rgba(0,0,0,0.7)" }}
                     initial={{ y: 20, opacity: 0 }}
@@ -98,18 +98,18 @@ export default function CharacterCard({
                             {dict.expectedGraduation}
                         </span>
                     </p>
-                </motion.div>
-            </motion.div>
+                </m.div>
+            </m.div>
 
             {/* Info block below image */}
-            <motion.div
+            <m.div
                 className="p-4 space-y-3 border-t-2 border-ink"
                 variants={fastStagger}
                 initial="hidden"
                 animate="visible"
             >
                 {/* Stats bars */}
-                <motion.div className="space-y-2.5" variants={fadeUp}>
+                <m.div className="space-y-2.5" variants={fadeUp}>
                     {/* INT (Logic) */}
                     <div>
                         <div className="flex justify-between text-[0.65rem] font-bold uppercase tracking-widest mb-1">
@@ -121,7 +121,7 @@ export default function CharacterCard({
                             </span>
                         </div>
                         <div className="h-1.5 bg-paper-dark border border-ink/20 overflow-hidden">
-                            <motion.div
+                            <m.div
                                 className="h-full bg-blood"
                                 initial={{ scaleX: 0 }}
                                 animate={{ scaleX: 0.85 }}
@@ -146,7 +146,7 @@ export default function CharacterCard({
                             </span>
                         </div>
                         <div className="h-1.5 bg-paper-dark border border-ink/20 overflow-hidden">
-                            <motion.div
+                            <m.div
                                 className="h-full bg-blood"
                                 initial={{ scaleX: 0 }}
                                 animate={{ scaleX: 0.65 }}
@@ -159,12 +159,12 @@ export default function CharacterCard({
                             />
                         </div>
                     </div>
-                </motion.div>
+                </m.div>
 
                 {/* Stack chips */}
-                <motion.div className="flex flex-wrap gap-1.5" variants={fadeUp}>
+                <m.div className="flex flex-wrap gap-1.5" variants={fadeUp}>
                     {dict.stackChips.map((chip, i) => (
-                        <motion.span
+                        <m.span
                             key={chip}
                             className="chip text-[0.6rem]"
                             initial={{ opacity: 0, scale: 0.5 }}
@@ -176,10 +176,10 @@ export default function CharacterCard({
                             }}
                         >
                             {chip}
-                        </motion.span>
+                        </m.span>
                     ))}
-                </motion.div>
-            </motion.div>
-        </motion.div>
+                </m.div>
+            </m.div>
+        </m.div>
     );
 }

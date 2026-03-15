@@ -1,18 +1,23 @@
-
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import ScrollIntro from "@/components/ScrollIntro";
-import LoadoutSection from "@/components/LoadoutSection";
-import WebServicesSection from "@/components/WebServicesSection";
-import CreativeProcessSection from "@/components/CreativeProcessSection";
-import AboutMeSection from "@/components/AboutMeSection";
-import ProjectArcs from "@/components/ProjectArcs";
-import FeaturedCaseStudy from "@/components/FeaturedCaseStudy";
-import Timeline from "@/components/Timeline";
-import Education from "@/components/Education";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import FooterCTA from "@/components/FooterCTA";
 import { Locale } from "@/i18n/config";
 import { messages } from "@/i18n/messages";
+
+// Statically import initial viewport components
+// (ScrollIntro and Hero are critical for LCP and initial interaction)
+
+// Dynamically import below-the-fold components
+const LoadoutSection = dynamic(() => import("@/components/LoadoutSection"));
+const WebServicesSection = dynamic(() => import("@/components/WebServicesSection"));
+const CreativeProcessSection = dynamic(() => import("@/components/CreativeProcessSection"));
+const AboutMeSection = dynamic(() => import("@/components/AboutMeSection"));
+const ProjectArcs = dynamic(() => import("@/components/ProjectArcs"));
+const FeaturedCaseStudy = dynamic(() => import("@/components/FeaturedCaseStudy"));
+const Timeline = dynamic(() => import("@/components/Timeline"));
+const Education = dynamic(() => import("@/components/Education"));
+const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"));
+const FooterCTA = dynamic(() => import("@/components/FooterCTA"));
 
 interface HomeProps {
   params: { locale: Locale };
@@ -39,6 +44,8 @@ export default function Home({ params: { locale } }: HomeProps) {
 
         <ScrollIntro dict={dict} />
         <Hero dict={dict} />
+        
+        {/* Below the fold sections load dynamically as the user scrolls */}
         <LoadoutSection dict={dict} />
         <WebServicesSection dict={dict} />
         <CreativeProcessSection dict={dict} />

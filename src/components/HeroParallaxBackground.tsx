@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 
 /**
@@ -90,7 +90,7 @@ export default function HeroParallaxBackground() {
             <div className="absolute inset-0 bg-paper z-0" />
 
             {/* 2. INK SHADOW (Misregistration Layer) */}
-            <motion.div
+            <m.div
                 className="absolute inset-[-20px]"
                 style={{ x: moveShadowX, y: moveShadowY }}
             >
@@ -102,10 +102,10 @@ export default function HeroParallaxBackground() {
                     </defs>
                     <rect width="100%" height="100%" fill="url(#halftone-shadow)" />
                 </svg>
-            </motion.div>
+            </m.div>
 
             {/* 3. HALFTONE DOTS LAYER */}
-            <motion.div
+            <m.div
                 className="absolute inset-[-20px]"
                 style={{ x: moveDotsX, y: moveDotsY }}
             >
@@ -117,10 +117,10 @@ export default function HeroParallaxBackground() {
                     </defs>
                     <rect width="100%" height="100%" fill="url(#halftone-main)" />
                 </svg>
-            </motion.div>
+            </m.div>
 
             {/* 4. MANGA MARKS / TEXTURE LAYER */}
-            <motion.div
+            <m.div
                 className="absolute inset-[-40px]"
                 style={{ x: moveMarksX, y: moveMarksY, rotate: rotateMarks }}
             >
@@ -135,10 +135,10 @@ export default function HeroParallaxBackground() {
                     </defs>
                     <rect width="100%" height="100%" fill="url(#manga-marks)" />
                 </svg>
-            </motion.div>
+            </m.div>
 
             {/* 5. SOFT SPOTLIGHT (Follows cursor) */}
-            <motion.div
+            <m.div
                 className="absolute w-[800px] h-[800px] rounded-full -translate-x-1/2 -translate-y-1/2 mix-blend-overlay pointer-events-none"
                 style={{
                     left: spotlightX,

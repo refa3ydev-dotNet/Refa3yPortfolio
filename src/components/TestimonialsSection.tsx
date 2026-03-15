@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import { m, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { useState, useEffect } from "react";
@@ -37,12 +37,12 @@ function TestimonialCard({ src, index }: { src: string, index: number }) {
     }
 
     return (
-        <motion.div
+        <m.div
             className="mb-6 break-inside-avoid"
             variants={fadeUp}
             style={{ perspective: 1000 }}
         >
-            <motion.div
+            <m.div
                 className="manga-frame overflow-hidden cursor-zoom-in group relative bg-paper-dark dark:bg-[#131724]"
                 style={{ rotateX, rotateY }}
                 onMouseMove={handleMouse}
@@ -82,8 +82,8 @@ function TestimonialCard({ src, index }: { src: string, index: number }) {
                         ARC_{index + 1}
                     </div>
                 </div>
-            </motion.div>
-        </motion.div>
+            </m.div>
+        </m.div>
     );
 }
 
@@ -107,27 +107,27 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
         <SectionReveal id="testimonials" className="py-24 relative overflow-hidden dark:bg-[#0F111A]">
             {/* Background Manga FX: Impact Stars - Subtle Watermarks */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-                <motion.div 
+                <m.div 
                     className="absolute top-20 left-[10%] text-zinc-800/[0.07] dark:text-zinc-500/[0.05] font-black text-9xl italic"
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1 }}
                 >
                     WHAM!
-                </motion.div>
-                <motion.div 
+                </m.div>
+                <m.div 
                     className="absolute bottom-40 right-[5%] text-zinc-800/[0.07] dark:text-zinc-500/[0.05] font-black text-8xl"
                     initial={{ opacity: 0, x: 100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
                     BOOM!
-                </motion.div>
+                </m.div>
             </div>
 
             <div className="mx-auto max-w-6xl px-6 relative z-10">
                 {/* Heading Area - High Contrast and Clear Layering */}
-                <motion.div
+                <m.div
                     className="text-start mb-20 relative z-10"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -142,16 +142,16 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
                     </h2>
                     
                     {/* Decorative brush stroke under heading */}
-                    <motion.div 
+                    <m.div 
                         className="h-2 bg-blood/20 mt-2 rounded-full"
                         initial={{ width: 0 }}
                         whileInView={{ width: '40%' }}
                         transition={{ duration: 1, delay: 0.5 }}
                     />
-                </motion.div>
+                </m.div>
 
                 {/* Masonry Grid */}
-                <motion.div
+                <m.div
                     className="columns-1 sm:columns-2 lg:columns-3 gap-6"
                     variants={staggerContainer}
                     initial="hidden"
@@ -166,7 +166,7 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
                     {testimonials.images.map((src, idx) => (
                         <TestimonialCard key={src + idx} src={src} index={idx} />
                     ))}
-                </motion.div>
+                </m.div>
 
                 {/* Bottom Speed Lines */}
                 <div className="mt-20">
@@ -177,14 +177,14 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
             {/* Modal for viewing images */}
             <AnimatePresence>
                 {selectedImage && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12 bg-ink/95 backdrop-blur-md cursor-zoom-out"
                         onClick={() => setSelectedImage(null)}
                     >
-                        <motion.div
+                        <m.div
                             className="relative max-w-[95vw] md:max-w-[75vw] lg:max-w-[1000px] max-h-[80vh] w-fit h-fit flex flex-col bg-paper dark:bg-[#131724] border-2 border-ink dark:border-[rgba(242,239,232,0.2)] shadow-[20px_20px_0_0_rgba(0,0,0,0.4)] overflow-hidden"
                             variants={scaleUp}
                             initial="hidden"
@@ -219,7 +219,7 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
 
                             {/* Image Workspace */}
                             <div className="overflow-auto custom-scrollbar bg-[#F0F0F0] dark:bg-[#0A0C12] p-2 md:p-4 flex items-start justify-center">
-                                <motion.div
+                                <m.div
                                     initial={{ opacity: 0, scale: 0.98 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: 0.2 }}
@@ -233,7 +233,7 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
                                         unoptimized
                                         className="max-w-full h-auto block"
                                     />
-                                </motion.div>
+                                </m.div>
                             </div>
                             
                             {/* Footer / Status Bar */}
@@ -247,8 +247,8 @@ export default function TestimonialsSection({ dict }: TestimonialsSectionProps) 
                                     <div className="w-1 h-1 bg-blood rounded-full animate-pulse delay-150" />
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </m.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </SectionReveal>

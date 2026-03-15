@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, animate } from "framer-motion";
+import { m, useMotionValue, animate } from "framer-motion";
 import React from "react";
 import CharacterCard from "./CharacterCard";
 import SectionReveal from "./SectionReveal";
@@ -72,65 +72,65 @@ export default function Hero({ dict }: HeroProps) {
             <div className="mx-auto max-w-6xl px-6 w-full relative">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
                     {/* ── Left: Text content (7 cols) ────────────────── */}
-                    <motion.div
+                    <m.div
                         className="lg:col-span-7 space-y-6 pt-4"
                         variants={staggerContainer}
                         initial="hidden"
                         animate="visible"
                     >
                         {/* Badge — stamp animation */}
-                        <motion.div variants={stampIn}>
+                        <m.div variants={stampIn}>
                             <span className="inline-block bg-blood text-white text-[0.6rem] font-bold tracking-[0.15em] uppercase px-3 py-1.5 border border-blood">
                                 {hero.badge}
                             </span>
-                        </motion.div>
+                        </m.div>
 
                         {/* ARC 01 — large black + WEB DEV — large red */}
-                        <motion.div variants={fadeUp}>
+                        <m.div variants={fadeUp}>
                             <h1>
-                                <motion.span
+                                <m.span
                                     className="block text-[3.5rem] sm:text-[4.5rem] lg:text-[5.5rem] font-black uppercase leading-[0.9] tracking-tight text-ink"
                                     initial={{ opacity: 0, y: 50 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.2 }}
                                 >
                                     {hero.arcLabel}
-                                </motion.span>
-                                <motion.span
+                                </m.span>
+                                <m.span
                                     className="block text-[3.5rem] sm:text-[4.5rem] lg:text-[5.5rem] font-black uppercase leading-[0.9] tracking-tight text-blood"
                                     initial={{ opacity: 0, y: 50 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.35 }}
                                 >
                                     {hero.mainTitle}
-                                </motion.span>
+                                </m.span>
                             </h1>
-                        </motion.div>
+                        </m.div>
 
                         {/* Subtitle — bordered left panel */}
-                        <motion.div
+                        <m.div
                             className="border-l-[3px] border-ink pl-4 max-w-md"
                             variants={fadeUp}
                         >
                             <p className="text-sm sm:text-base leading-relaxed text-ink-light">
                                 {hero.subtitle}
                             </p>
-                        </motion.div>
+                        </m.div>
 
                         {/* Quick stats line */}
-                        <motion.p
+                        <m.p
                             className="text-[0.75rem] text-ink-light tracking-wider font-medium"
                             variants={fadeUp}
                         >
                             {hero.stats}
-                        </motion.p>
+                        </m.p>
 
                         {/* CTA buttons */}
-                        <motion.div
+                        <m.div
                             className="flex flex-wrap gap-3 pt-1"
                             variants={fadeUp}
                         >
-                            <motion.button
+                            <m.button
                                 onClick={handleProjectsClick}
                                 disabled={isLoadingProjects}
                                 className="bg-blood text-white text-xs font-bold tracking-wider uppercase px-6 py-3 border-2 border-blood hover:bg-blood/90 transition-colors disabled:opacity-70 disabled:cursor-wait relative overflow-hidden"
@@ -140,7 +140,7 @@ export default function Hero({ dict }: HeroProps) {
                                 {isLoadingProjects ? (
                                     <span className="flex items-center gap-2">
                                         LOADING
-                                        <motion.span
+                                        <m.span
                                             className="block w-1.5 h-1.5 bg-white rounded-full"
                                             animate={{ opacity: [0, 1, 0] }}
                                             transition={{ duration: 1, repeat: Infinity }}
@@ -149,8 +149,8 @@ export default function Hero({ dict }: HeroProps) {
                                 ) : (
                                     dict.buttonLabels.viewProjects
                                 )}
-                            </motion.button>
-                            <motion.a
+                            </m.button>
+                            <m.a
                                 href={hero.cvLink}
                                 download="Omar_Ayman_Allam_CV.pdf"
                                 target="_blank"
@@ -160,12 +160,12 @@ export default function Hero({ dict }: HeroProps) {
                                 whileTap={{ scale: 0.97 }}
                             >
                                 {dict.buttonLabels.downloadCv}
-                            </motion.a>
-                        </motion.div>
-                    </motion.div>
+                            </m.a>
+                        </m.div>
+                    </m.div>
 
                     {/* ── Right: Character Card (5 cols) ─────────────── */}
-                    <motion.div
+                    <m.div
                         className="lg:col-span-5 flex justify-center lg:justify-end relative"
                         variants={fadeRight}
                         initial="hidden"
@@ -174,7 +174,7 @@ export default function Hero({ dict }: HeroProps) {
                         <CharacterCard dict={dict} />
 
                         {/* Vertical Japanese katakana — decorative */}
-                        <motion.div
+                        <m.div
                             className="absolute -right-8 top-10 hidden xl:flex flex-col gap-1 text-ink/15 text-2xl font-black"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -182,22 +182,22 @@ export default function Hero({ dict }: HeroProps) {
                             aria-hidden="true"
                         >
                             {"レベルアップ".split("").map((char, i) => (
-                                <motion.span
+                                <m.span
                                     key={i}
                                     initial={{ opacity: 0, x: 10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 1.2 + i * 0.1 }}
                                 >
                                     {char}
-                                </motion.span>
+                                </m.span>
                             ))}
-                        </motion.div>
-                    </motion.div>
+                        </m.div>
+                    </m.div>
                 </div>
             </div>
 
             {/* Decorative horizontal line at bottom */}
-            <motion.div
+            <m.div
                 className="absolute bottom-0 left-0 right-0 h-px bg-ink/20"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}

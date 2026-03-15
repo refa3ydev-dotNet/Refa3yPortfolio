@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
+import { m, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 
 interface ScrollIntroProps {
@@ -27,7 +27,7 @@ const AnimatedText = ({
     const scale = useTransform(progress, range, [1.1, 1, 1, 0.9]);
 
     return (
-        <motion.div
+        <m.div
             style={{
                 opacity,
                 y,
@@ -41,7 +41,7 @@ const AnimatedText = ({
             }`}
         >
             {text}
-        </motion.div>
+        </m.div>
     );
 };
 
@@ -86,7 +86,7 @@ export default function ScrollIntro({ dict }: ScrollIntroProps) {
             <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
                 
                 {/* Background Layer */}
-                <motion.div 
+                <m.div 
                     style={{ scale: bgScale, opacity: bgOpacity }}
                     className="absolute inset-0 z-0"
                 >
@@ -98,12 +98,12 @@ export default function ScrollIntro({ dict }: ScrollIntroProps) {
                         priority
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#020202] via-transparent to-[#020202]" />
-                </motion.div>
+                </m.div>
 
                 {/* Progress Marker */}
                 <div className="absolute right-8 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-4">
                     <div className="w-[2px] h-40 bg-white/10 relative overflow-hidden">
-                        <motion.div 
+                        <m.div 
                             style={{ height: useTransform(smoothProgress, [0, 1], ["0%", "100%"]) }}
                             className="absolute top-0 left-0 w-full bg-blood shadow-[0_0_15px_#B3261E]"
                         />
@@ -125,7 +125,7 @@ export default function ScrollIntro({ dict }: ScrollIntroProps) {
 
                 {/* Avatar Foreground */}
                 <div className="relative z-20 w-full h-full max-w-7xl mx-auto px-4 flex items-end justify-center pointer-events-none">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -138,7 +138,7 @@ export default function ScrollIntro({ dict }: ScrollIntroProps) {
                             className="object-contain object-bottom drop-shadow-[0_20px_100px_rgba(0,0,0,0.8)]"
                             priority
                         />
-                    </motion.div>
+                    </m.div>
                 </div>
 
                 {/* Cinematic Overlays */}

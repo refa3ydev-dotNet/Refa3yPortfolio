@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Dictionary } from "@/i18n/messages";
 import SectionReveal from "./SectionReveal";
 import { useState } from "react";
@@ -33,7 +33,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
 
             <div className="mx-auto max-w-6xl px-6">
                 {/* Divider — animated draw from center */}
-                <motion.div
+                <m.div
                     className="section-divider mb-12"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
@@ -43,7 +43,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                 />
 
                 {/* Heading — scale punch-in */}
-                <motion.h2
+                <m.h2
                     className="section-heading text-start mb-14"
                     variants={scaleUp}
                     initial="hidden"
@@ -51,10 +51,10 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                     viewport={{ once: true }}
                 >
                     {dict.sectionHeadings.projects}
-                </motion.h2>
+                </m.h2>
 
                 {/* Project cards grid — staggered */}
-                <motion.div
+                <m.div
                     className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"
                     variants={staggerContainer}
                     initial="hidden"
@@ -62,7 +62,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                     viewport={{ once: true, amount: 0.15 }}
                 >
                     {displayedProjects.map((project: Project) => (
-                        <motion.article
+                        <m.article
                             key={project.episode}
                             className="manga-frame overflow-hidden group cursor-pointer"
                             variants={fadeUp}
@@ -74,7 +74,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                             onClick={() => setSelectedProject(project)}
                         >
                             {/* Project image — clip reveal */}
-                            <motion.div
+                            <m.div
                                 className="relative w-full aspect-video bg-paper-dark border-b-2 border-ink overflow-hidden"
                                 variants={clipRevealLeft}
                             >
@@ -86,7 +86,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                                 {/* Episode badge */}
-                                <motion.span
+                                <m.span
                                     className="absolute top-3 left-3 chip-blood chip text-[0.6rem]"
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
@@ -94,7 +94,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                     transition={{ delay: 0.6, duration: 0.3 }}
                                 >
                                     {project.episode}
-                                </motion.span>
+                                </m.span>
 
                                 {/* Hover overlay with scan lines */}
                                 <div
@@ -104,7 +104,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                             "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(17,17,17,0.04) 3px, rgba(17,17,17,0.04) 6px)",
                                     }}
                                 />
-                            </motion.div>
+                            </m.div>
 
                             {/* Content */}
                             <div className="p-5 space-y-4">
@@ -126,7 +126,7 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                 {/* Tech chips */}
                                 <div className="flex flex-wrap gap-1.5">
                                     {project.techChips.map((chip: string, i: number) => (
-                                        <motion.span
+                                        <m.span
                                             key={chip}
                                             className="chip text-[0.65rem]"
                                             initial={{ opacity: 0, scale: 0.5 }}
@@ -139,16 +139,16 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                                             }}
                                         >
                                             {chip}
-                                        </motion.span>
+                                        </m.span>
                                     ))}
                                 </div>
                             </div>
-                        </motion.article>
+                        </m.article>
                     ))}
-                </motion.div>
+                </m.div>
 
                 {/* Read more chapters link */}
-                <motion.p
+                <m.p
                     className="text-center"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -156,14 +156,14 @@ export default function ProjectArcs({ dict }: ProjectArcsProps) {
                     transition={{ delay: 0.5 }}
                 >
                     <Link href="/projects" prefetch={false}>
-                        <motion.button
+                        <m.button
                             className="text-sm font-bold tracking-wider uppercase text-ink hover:text-blood transition-colors"
                             whileHover={{ x: 8 }}
                         >
                             {dict.buttonLabels.readMore}
-                        </motion.button>
+                        </m.button>
                     </Link>
-                </motion.p>
+                </m.p>
             </div>
 
             <ProjectModal

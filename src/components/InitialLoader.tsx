@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import MangaLoader from "./MangaLoader";
 
 export default function InitialLoader() {
@@ -50,14 +50,14 @@ export default function InitialLoader() {
     return (
         <AnimatePresence mode="wait" onExitComplete={onExitComplete}>
             {isLoading && (
-                <motion.div
+                <m.div
                     className="fixed inset-0 z-[99999] pointer-events-auto"
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
                     <MangaLoader />
-                </motion.div>
+                </m.div>
             )}
         </AnimatePresence>
     );

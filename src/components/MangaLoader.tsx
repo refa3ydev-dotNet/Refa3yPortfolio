@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function MangaLoader() {
     // Prevent hydration mismatch by rendering null initially if needed, 
@@ -33,7 +33,7 @@ export default function MangaLoader() {
 
                         {/* Animated Progress Bar (Blood Red) */}
                         <div className="relative w-full h-1 bg-ink/10 dark:bg-[#F2EFE8]/10 overflow-hidden mt-2">
-                            <motion.div
+                            <m.div
                                 className="absolute inset-0 bg-blood"
                                 initial={{ x: "-100%" }}
                                 animate={{ x: "100%" }}
