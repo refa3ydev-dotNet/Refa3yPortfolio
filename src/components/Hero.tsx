@@ -1,7 +1,7 @@
 "use client";
 
-import { m, useMotionValue, animate } from "framer-motion";
-import React from "react";
+import { m, useMotionValue, animate, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import HolographicCard from "./HolographicCard";
 
@@ -22,6 +22,16 @@ interface HeroProps {
 
 export default function Hero({ dict }: HeroProps) {
     const { hero } = dict;
+
+    // Delayed mounting for heavy 3D components to optimize TBT
+    const [show3D, setShow3D] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShow3D(true);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     // Mouse position state (Normalized -1 to 1)
     const mouseX = useMotionValue(0);
@@ -60,10 +70,19 @@ export default function Hero({ dict }: HeroProps) {
             id="home"
             className="relative w-full min-h-screen overflow-hidden flex items-center pt-24 pb-16"
         >
-            {/* 3D Cyberpunk Grid Background - Layer 0 */}
-            <div className="absolute inset-0 z-0 w-full h-full">
-                <CyberpunkGridBg />
-            </div>
+            {/* 3D Cyberpunk Grid Background - Layer 0 - Delayed Mounting for TBT Optimization */}
+            <AnimatePresence>
+                {show3D && (
+                    <m.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="absolute inset-0 z-0 w-full h-full"
+                    >
+                        <CyberpunkGridBg />
+                    </m.div>
+                )}
+            </AnimatePresence>
 
             {/* Dark Overlay for Depth and Readability - Layer 10 */}
             <div className="absolute inset-0 z-10 bg-paper/60 dark:bg-black/60 pointer-events-none" />
