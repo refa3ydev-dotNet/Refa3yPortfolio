@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "./ThemeProvider";
@@ -24,7 +24,7 @@ export default function Navbar({ dict, locale }: NavbarProps) {
     const pathname = usePathname();
     const router = useRouter();
 
-    const checkVisibility = () => {
+    const checkVisibility = useCallback(() => {
         const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === "/";
         
         if (!isHomePage) {
@@ -39,11 +39,11 @@ export default function Navbar({ dict, locale }: NavbarProps) {
         } else {
             setIsVisible(false);
         }
-    };
+    }, [pathname, locale]);
 
     useEffect(() => {
         checkVisibility();
-    }, [pathname, locale]);
+    }, [checkVisibility]);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         setScrolled(latest > 20);
